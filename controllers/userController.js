@@ -3,8 +3,30 @@
  *   Copyright 2015 Mercury Solutions.
  * *******************************************************************************
  */
+var userService = require('../services/userService');
 
-var institutionService = require("../services/institutionService");
+exports.findUserByEmail = function (req, res) {
+    var email = req.params.email;
+    var overridePetition = req.body.overridePetition
+
+    return userService
+        .findUserByEmail(requestId, overridePetition)
+        .then(function (response) {
+            if(response[0].statusCode==200) {
+                res.status(200).json(response);
+            }
+            else{
+                //log.info("Error:"+response)
+                res.status(400).send(response[1]);
+            }
+        })
+        .catch(function (response) {
+            res.status(400).send(response);
+        });
+}
+
+
+/*var institutionService = require("../services/institutionService");
 
 exports.find = function(req,res) {
     var institutionId = institutionService.getIdFromRequest(req);
@@ -48,4 +70,4 @@ exports.save = function(req,res) {
             res.status(400).send(externalAPIresponse);
         }
     )
-}
+}*/

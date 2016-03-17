@@ -3,38 +3,35 @@
  *   Copyright 2015 Mercury Solutions.
  * *******************************************************************************
  */
-
-
 var errorService = require("./errorService");
 var promise = require("bluebird");
-var equivalencyOverrideURLBuilder = require('../consumer/EquivalencyOverrideURLBuilder');
-var httpOptionsBuilder = require('../consumer/httpOptionsBuilder');
-
+var userURLBuilder = require('../builders/userURLBuilder');
+var httpOptionsBuilder = require('../builders/httpOptionsBuilder');
 var request = promise.promisify(require("request"));
 
 promise.promisifyAll(request);
 
-exports.retrieveOrCreateEquivalency = function (requestId, overridePetition) {
+exports.findUserByEmail = function (requestId, overridePetition) {
 
-    var url = equivalencyOverrideURLBuilder.buildURLForRetrieveOrCreateEquivalency(requestId)
+    var url = userURLBuilder.buildURLForFindUserByEmail(requestId)
     var opts = httpOptionsBuilder.build("POST", url, overridePetition)
     //Returns a promise to get the resource.
     return request(opts);
 }
 
-exports.saveOverrideSelection = function (requestId, overridePetition) {
-    var url = equivalencyOverrideURLBuilder.buildURLForSaveOverrideSelection(requestId)
+/*exports.saveOverrideSelection = function (requestId, overridePetition) {
+    var url = userURLBuilder.buildURLForSaveOverrideSelection(requestId)
     var opts = httpOptionsBuilder.build("POST", url, overridePetition)
     //Returns a promise to get the resource.
     return request(opts);
 }
 
 exports.saveEquivalencyOverride = function (requestId, equivalencyOverride) {
-    var url = equivalencyOverrideURLBuilder.buildURLForSaveEquivalencyOverride(requestId)
+    var url = userURLBuilder.buildURLForSaveEquivalencyOverride(requestId)
     var opts = httpOptionsBuilder.build("POST", url, equivalencyOverride)
     //Returns a promise to get the resource.
     return request(opts);
-}
+}*/
 
 /*
 var request = require('request');
