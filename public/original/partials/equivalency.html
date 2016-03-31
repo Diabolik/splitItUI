@@ -1,0 +1,107 @@
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
+    <h3>Equivalency Details</h3>
+    <div growl id="notificationMessage"></div>
+    <div class="col-md-8">
+
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Session: </span>
+                <span id="equivalencyTerm">{{equivalency.session}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-12">
+                <span >Default Begin Date: </span>
+                <span id="equivalencyBeginDate">{{equivalency.beginDate| date:'yyyy-MM-dd' : 'GMT'}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-12">
+                <span >Default End Date: </span>
+                <span id="equivalencyEndDate">{{equivalency.endDate| date:'yyyy-MM-dd' : 'GMT'}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-12">
+                <span >Create Date: </span>
+                <span id="equivalencyCreateDate">{{equivalency.dateCreated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-12">
+                <span >Last Update Date: </span>
+                <span id="equivalencyUpdateDate">{{equivalency.dateUpdated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</span><br>
+            </div>
+        </div>
+        <div class="row" ng-controller="modalsController">
+            <div class="col-sm-4 col-md-12">
+                <br/><button class="btn btn-danger" ng-click="launch('confirmDeleteEquivalency')">Delete Equivalency</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
+    <div class="panel-heading"><h3>Local Courses</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tr>
+                    <th>Local Course Id</th>
+                    <th>Subject</th>
+                    <th>Number</th>
+                    <th>Level</th>
+                    <th>Section</th>
+                    <th>Credits</th>
+                </tr>
+                <tr ng-repeat="localCourse in equivalency.localCourseList" ng-class-odd="'stripedSection'">
+                    <td><a href='#/localCourses/{{localCourse.id}}'>{{localCourse.id}}</a></td>
+                    <td>{{localCourse.courseSubject}}</td>
+                    <td>{{localCourse.courseNumber}}</td>
+                    <td>{{localCourse.courseLevel.description}}</td>
+                    <td>{{localCourse.section}}</td>
+                    <td>{{localCourse.credits}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4 col-md-12">
+            <div class="col-sm-4 col-md-12" ng-controller="localCourseSaveController">
+                <br/><a href="#/localCourse/save" role="button" class="btn btn-default btn-large">Add Local Course</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
+    <div class="panel-heading"><h3>Transfer Courses</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tr>
+                    <th>Transfer Course Id</th>
+                    <th>Subject</th>
+                    <th>Number</th>
+                    <th>Level</th>
+                </tr>
+                <tr ng-repeat="transferCourse in equivalency.transferCourseList" ng-class-odd="'stripedSection'">
+                    <td><a href='#/transferCourses/{{transferCourse.id}}'>{{transferCourse.id}}</a></td>
+                    <td>{{transferCourse.courseSubject}}</td>
+                    <td>{{transferCourse.courseNumber}}</td>
+                    <td>{{transferCourse.courseLevel.description}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4 col-md-12">
+            <div class="col-sm-4 col-md-12" ng-controller="transferCourseSaveController">
+                <br/><a href="#/transferCourse/save" role="button" class="btn btn-default btn-large">Add Transfer Course</a>
+            </div>
+        </div>
+    </div>
+</div>

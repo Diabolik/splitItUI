@@ -1,0 +1,45 @@
+<!--/* Copyright 2008-2015 Ellucian Company L.P. and its affiliates. */-->
+
+<nav>
+    <ul class="breadcrumb">
+        <li><a id="agreementListing.nav.home" href="../home/#/"><span ng-bind="'common.breadcumb.home' | i18n"/></a></li>
+        <li ng-bind="'common.breadcumb.agreementListing' | i18n"></li>
+    </ul>
+</nav>
+<div>
+    <div growl></div>
+
+
+    <p>
+        <a id="newAgreementBtn" href="#/agreementListing/new" role="button" class="btn btn-default btn-sm">
+            <span class="BannerIcon icon-left icon-identifier glyphicon glyphicon-plus" aria-hidden="true"/>
+            <span ng-bind="'agreementListing.agreements.new.button' | i18n"/>
+        </a>
+    </p>
+
+    <table class="data-table table-bordered">
+        
+        <tr id = "rowHeader">
+            <th ng-bind="'agreementListing.agreements.action.tableHeader' | i18n"></th>
+            <th ng-bind="'agreementListing.agreements.institution.tableHeader' | i18n"></th>
+            <th ng-bind="'agreementListing.agreements.name.tableHeader' | i18n"></th>
+            <th ng-bind="'agreementListing.agreements.description.tableHeader' | i18n"></th>
+            <th ng-bind="'agreementListing.agreements.program.tableHeader' | i18n"></th>
+            <th ng-bind="'agreementListing.agreements.catalog.tableHeader' | i18n"></th>
+            <th ng-bind="'agreementListing.agreements.receivedDate.tableHeader' | i18n"></th>
+            <th ng-bind="'agreementListing.agreements.activityDate.tableHeader' | i18n"></th>
+        </tr>
+
+        <tr ng-repeat="agreement in alc.agreements">
+            <td><a id="agreementListing.link.view[{{$index}}]" href="/app/agreementListing/#/agreements/{{agreement.id}}" ng-bind="'agreementListing.agreements.action.view' | i18n"></a></td>
+            <td>{{agreement.sourceInstitution.name}}</td>
+            <td>{{agreement.name}}</td>
+            <td>{{agreement.description}}</td>
+            <td>{{agreement.program}}</td>
+            <td>{{agreement.catalogYear}}</td>
+            <td id="agreementCreateDate[{{$index}}]">{{agreement.dateCreated | date:'yyyy-MM-dd HH:mm a'}}</td>
+            <td id="agreementUpdateDate[{{$index}}]">{{agreement.dateUpdated | date:'yyyy-MM-dd HH:mm a'}}</td>
+        </tr>
+
+    </table>
+</div>

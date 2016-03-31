@@ -1,0 +1,101 @@
+
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1>{{'agreementListing.agreements.new.title' | i18n}}</h1>
+
+    <!--Detail Panel-->
+
+    <div class="panel-body">
+
+        <form class="form-group" id="agreementForm" name="agreementForm" >
+            <div class="form-group" ng-class="{ 'has-error': ((agreementForm.sourceInstitutionId.$error.required && agreementForm.sourceInstitutionId.$touched) ||
+                (agreementForm.sourceInstitutionId.$error.required && aldc.submitted))}">
+                <label class="control-label" for="sourceInstitutionId">{{'agreementListing.agreements.institution.label' | i18n}}<span class="required-indicator"> * </span></label>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (agreementForm.sourceInstitutionId.$error.required && agreementForm.sourceInstitutionId.$touched)}">
+                    <select class="form-control" id="sourceInstitutionId" name="sourceInstitutionId" ng-model="aldc.agreement.sourceInstitutionId"
+                            data-ng-options="institution.id as institution.name for institution in aldc.institutionList" width="90%" required>
+                        <option value="" default selected>{{'agreementListing.agreements.institution.picker' | i18n}}*</option>
+                    </select>
+                    <div class="control-label" role="alert" ng-if="((agreementForm.sourceInstitutionId.$error.required && agreementForm.sourceInstitutionId.$touched) ||
+                (agreementForm.sourceInstitutionId.$error.required && aldc.submitted))" >
+                        <span class="EllucianIcon form-control-feedback" >
+                            <svg viewBox="0 0 24 24" height="24" width="24" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                <path d="M11.561 23.019h-0.028c-1.435 0-2.6-1.136-2.6-2.538s1.165-2.541 2.6-2.541h0.028c1.435 0 2.6 1.138 2.6 2.541s-1.165 2.538-2.6 2.538v0zM15.288 3.66c-0.172 2.538-1.357 10.075-1.357 10.075 0 1.272-1.066 2.303-2.365 2.303h-0.040c-1.302 0-2.368-1.031-2.368-2.303 0 0-1.185-7.537-1.353-10.075-0.085-1.269 0.909-3.627 3.721-3.627 0.006 0 0.013 0.003 0.020 0.003s0.014-0.003 0.020-0.003c2.81 0 3.807 2.357 3.721 3.627v0z" fill="#ee4f4f" />
+                            </svg>
+                        </span>
+                        <div ng-bind="'agreementListing.agreements.sourceInstitutionId.error' | i18n"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error': ((agreementForm.agreementName.$error.required && agreementForm.agreementName.$touched) ||
+                (agreementForm.agreementName.$error.required && aldc.submitted))}">
+                <label class="control-label" for="agreementName">{{'agreementListing.agreements.name.tableHeader' | i18n}}<span class="form-inline required-indicator"> * </span></label>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (agreementForm.agreementName.$error.required && agreementForm.agreementName.$touched)}">
+                    <input id="agreementName" name="agreementName" class="form-control" ng-model="aldc.agreement.name" required >
+                    <div class="control-label" role="alert" ng-if="((agreementForm.agreementName.$error.required && agreementForm.agreementName.$touched) ||
+                        (agreementForm.agreementName.$error.required && aldc.submitted))" >
+                        <span class="EllucianIcon form-control-feedback" >
+                            <svg viewBox="0 0 24 24" height="24" width="24" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                <path d="M11.561 23.019h-0.028c-1.435 0-2.6-1.136-2.6-2.538s1.165-2.541 2.6-2.541h0.028c1.435 0 2.6 1.138 2.6 2.541s-1.165 2.538-2.6 2.538v0zM15.288 3.66c-0.172 2.538-1.357 10.075-1.357 10.075 0 1.272-1.066 2.303-2.365 2.303h-0.040c-1.302 0-2.368-1.031-2.368-2.303 0 0-1.185-7.537-1.353-10.075-0.085-1.269 0.909-3.627 3.721-3.627 0.006 0 0.013 0.003 0.020 0.003s0.014-0.003 0.020-0.003c2.81 0 3.807 2.357 3.721 3.627v0z" fill="#ee4f4f" />
+                            </svg>
+                        </span>
+                        <div ng-bind="'agreementListing.agreements.agreementName.error' | i18n"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error': ((agreementForm.agreementDesc.$error.required && agreementForm.agreementDesc.$touched)
+                || (agreementForm.agreementDesc.$error.required &&  aldc.submitted))}">
+                <label class="control-label" for="agreementDesc">{{'agreementListing.agreements.description.tableHeader' | i18n}}<span class="form-inline required-indicator"> * </span></label>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (agreementForm.agreementDesc.$error.required && agreementForm.agreementDesc.$touched)}">
+                    <input id="agreementDesc" name="agreementDesc" class="form-control" ng-model="aldc.agreement.description" required/>
+                    <div class="control-label" role="alert" ng-if="((agreementForm.agreementDesc.$error.required && agreementForm.agreementDesc.$touched)
+                        || (agreementForm.agreementDesc.$error.required &&  aldc.submitted))" >
+                        <span class="EllucianIcon form-control-feedback" >
+                            <svg viewBox="0 0 24 24" height="24" width="24" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                <path d="M11.561 23.019h-0.028c-1.435 0-2.6-1.136-2.6-2.538s1.165-2.541 2.6-2.541h0.028c1.435 0 2.6 1.138 2.6 2.541s-1.165 2.538-2.6 2.538v0zM15.288 3.66c-0.172 2.538-1.357 10.075-1.357 10.075 0 1.272-1.066 2.303-2.365 2.303h-0.040c-1.302 0-2.368-1.031-2.368-2.303 0 0-1.185-7.537-1.353-10.075-0.085-1.269 0.909-3.627 3.721-3.627 0.006 0 0.013 0.003 0.020 0.003s0.014-0.003 0.020-0.003c2.81 0 3.807 2.357 3.721 3.627v0z" fill="#ee4f4f" />
+                            </svg>
+                        </span>
+                        <div ng-bind="'agreementListing.agreements.agreementDesc.error' | i18n"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="agreementProg">{{'agreementListing.agreements.program.tableHeader' | i18n}}</label>
+                <input id="agreementProg" class="form-control" ng-model="aldc.agreement.program" />
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error': (agreementForm.agreementCat.$error.pattern || agreementForm.agreementCat.$error.minlength || agreementForm.agreementCat.$error.maxlength )}">
+                <label class="control-label" for="agreementCat">{{'agreementListing.agreements.catalog.tableHeader' | i18n}}</label>
+                <div class="form-group has-feedback" ng-class="{ 'has-error': (agreementForm.agreementCat.$error.pattern || agreementForm.agreementCat.$error.minlength || agreementForm.agreementCat.$error.maxlength )}">
+                    <input id="agreementCat" name="agreementCat" type="text" class="form-control" ng-model="aldc.agreement.catalogYear"
+                           ng-minlength="4" ng-maxlength="4" ng-pattern="/^[0-9]*$/" >
+                    <div class="control-label" role="alert" ng-if="agreementForm.agreementCat.$error.pattern || agreementForm.agreementCat.$error.minlength || agreementForm.agreementCat.$error.maxlength" >
+                        <span class="EllucianIcon form-control-feedback" >
+                            <svg viewBox="0 0 24 24" height="24" width="24" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                 <path d="M11.561 23.019h-0.028c-1.435 0-2.6-1.136-2.6-2.538s1.165-2.541 2.6-2.541h0.028c1.435 0 2.6 1.138 2.6 2.541s-1.165 2.538-2.6 2.538v0zM15.288 3.66c-0.172 2.538-1.357 10.075-1.357 10.075 0 1.272-1.066 2.303-2.365 2.303h-0.040c-1.302 0-2.368-1.031-2.368-2.303 0 0-1.185-7.537-1.353-10.075-0.085-1.269 0.909-3.627 3.721-3.627 0.006 0 0.013 0.003 0.020 0.003s0.014-0.003 0.020-0.003c2.81 0 3.807 2.357 3.721 3.627v0z" fill="#ee4f4f" />
+                            </svg>
+                        </span>
+                        <div ng-bind="'agreementListing.agreements.catalog.error' | i18n"></div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+        <!--Save agreement button-->
+        <p>
+            <!--<a id="saveAgreementBtn" href="#/agreementListing/save" role="button" class="btn btn-default btn-sm"  ng-click="aldc.save()"  ng-disabled="!agreementForm.$valid"  >-->
+            <a id="saveAgreementBtn" href="" role="button" class="btn btn-default btn-sm"  ng-click="aldc.save(agreementForm)"  ng-disabled="!agreementForm.$valid"  >
+                <span class="BannerIcon icon-left icon-identifier glyphicon glyphicon-plus" aria-hidden="true"/>
+                <span ng-bind="'agreementListing.agreements.save.button' | i18n"/>
+            </a>
+
+            <a id="cancelAgreementBtn" href="#/agreementListing/" role="button" class="btn btn-default btn-sm">
+                <span ng-bind="'agreementListing.agreements.cancel.button' | i18n"/>
+            </a>
+        </p>
+
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<!--/* Copyright 2008-2015 Ellucian Company L.P. and its affiliates. */-->
+<nav>
+    <ul class="breadcrumb">
+        <li><a id="requestListing.nav.home" href="../home/#/"><span ng-bind="'common.breadcumb.home' | i18n"/></a></li>
+        <li ng-bind="'common.breadcumb.requestListing' | i18n"></li>
+    </ul>
+</nav>
+<div>
+    <div growl></div>
+    <table class="table table-bordered">
+
+        <tr id = "rowHeader">
+            <th ng-bind="'requestListing.requests.action.tableHeader' | i18n"></th>
+            <th ng-bind="'requestListing.requests.studentId.tableHeader' | i18n"></th>
+            <th ng-bind="'requestListing.requests.student.tableHeader' | i18n"></th>
+            <th ng-bind="'requestListing.requests.institution.tableHeader' | i18n"></th>
+            <th ng-bind="'requestListing.requests.status.tableHeader' | i18n"></th>
+            <th ng-bind="'requestListing.requests.lastUpdatedBy.tableHeader' | i18n"></th>
+            <th ng-bind="'requestListing.requests.cycleTime.tableHeader' | i18n"></th>
+            <th ng-bind="'requestListing.requests.receivedDate.tableHeader' | i18n"></th>
+            <th ng-bind="'requestListing.requests.activityDate.tableHeader' | i18n"></th>
+        </tr>
+
+        <tr ng-repeat="request in rlc.requests">
+            <td><a id="requestListing.link.view[{{$index}}]" href="/app/requestDetails/#/requests/{{request.id}}" ng-bind="'requestListing.requests.action.view' | i18n"></a></td>
+            <td>{{request.studentId}}</td>
+            <td>{{request.student}}</td>
+            <td>{{request.institution}}</td>
+            <td>{{request.statusDescription}}</td>
+            <td>{{request.updatedBy}}</td>
+            <td>
+                <span>{{request.cycleTime.days}}</span>
+                <span ng-bind="'requestListing.requests.cycleTime.suffix.days' | i18n"></span>
+                <span>{{request.cycleTime.hours}}</span>
+                <span ng-bind="'requestListing.requests.cycleTime.suffix.hours' | i18n"></span>
+            </td>
+            <td>{{request.dateCreated | date: "yyyy-MM-dd hh:mm a"}}</td>
+            <td>{{request.dateUpdated | date: "yyyy-MM-dd hh:mm a"}}</td>
+        </tr>
+
+    </table>
+</div>

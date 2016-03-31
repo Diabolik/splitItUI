@@ -1,0 +1,65 @@
+<!--Copyright 2015 Ellucian Company L.P. and its affiliates.-->
+<div  id="articulationResults.actionNeeded.table" class="section" ng-controller="ActionNeededController as anc">
+    <!-- Table Header -->
+    <div ng-if="anc.showTable" class="container-fluid table-row left-align grid-overlay" id="articulationResults.actionNeeded.table.tableHeader">
+        <div class="row">
+            <strong>
+                <span class="col-sm-9 col-md-9 col-lg-9 col-xl-9">{{'articulationResults.actionNeeded.unmatchedCoursesNumber.tableHeader' | i18n}}: {{anc.unmatchedNumber}}</span>
+                <!-- the number of ignored courses should be calculated based on the results in this page -->
+                <span class="col-sm-2 col-sm-2 col-lg-2 col-xl-2">{{'articulationResults.actionNeeded.ignoredCoursesNumber.tableHeader' | i18n}}: 0</span>
+                <!-- This code is useful, however I'm commenting it since it is disabled at the moment, but we are going to use it later. -->
+                <!--<a id="articulationResults.actionNeeded.ignoredCourses.open" href="#" class="col-sm-1 col-md-1 col-lg-1 col-xl-1">-->
+                <!--<span ng-bind="'articulationResults.actionNeeded.ignoredCourses.open.tableHeader' | i18n"/>-->
+                <!--</a>-->
+            </strong>
+        </div>
+        <div class="row">
+            <strong>
+                <span class="col-sm-11 col-md-11 col-lg-11 col-xl-11" ng-bind="'articulationResults.actionNeeded.description.tableHeader' | i18n" />
+                <!-- This code is useful, however I'm commenting it since it is disabled at the moment, but we are going to use it later. -->
+                <!--<a id="articulationResults.actionNeeded.list.showAll" href="#" class="col-xl-1">-->
+                <!--<span ng-bind="'articulationResults.actionNeeded.showAll.tableHeader' | i18n"/>-->
+                <!--</a>-->
+                <!--<a id="articulationResults.actionNeeded.list.tableView" href="#" class="hidden col-xl-1">-->
+                <!--<span ng-bind="'articulationResults.actionNeeded.tableView.tableHeader' | i18n"/>-->
+                <!--</a>-->
+            </strong>
+        </div>
+    </div>
+    <table ng-if="anc.showTable" id="dataTable" class="data-table" tabindex="0">
+        <thead>
+        <tr>
+            <th id="requestDetails.actionNeededTab.tableHeader.action" scope="col" ng-bind="'articulationResults.actionNeeded.action.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.actionNeededTab.tableHeader.status" scope="col" ng-bind="'articulationResults.actionNeeded.status.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.actionNeededTab.tableHeader.date" scope="col" ng-bind="'articulationResults.actionNeeded.date.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.actionNeededTab.tableHeader.session" scope="col" ng-bind="'articulationResults.actionNeeded.session.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.actionNeededTab.tableHeader.subject" scope="col" ng-bind="'articulationResults.actionNeeded.subject.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.actionNeededTab.tableHeader.course" scope="col" ng-bind="'articulationResults.actionNeeded.course.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.actionNeededTab.tableHeader.level" scope="col" ng-bind="'articulationResults.actionNeeded.level.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.actionNeededTab.tableHeader.credits" scope="col" ng-bind="'articulationResults.actionNeeded.credits.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.actionNeededTab.tableHeader.grade" scope="col" ng-bind="'articulationResults.actionNeeded.grade.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.actionNeededTab.tableHeader.recommendation" scope="col" ng-bind="'articulationResults.actionNeeded.recommendation.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.actionNeededTab.tableHeader.actionRecommendation" scope="col" ng-bind="'articulationResults.actionNeeded.action.tableHeader' | i18n">
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr class="ng-scope" ng-repeat="item in anc.leftOvers" id="{{item.id}}" ng-include src="'/app/requestDetails/partials/actionNeededTableBody.html'">
+            </tr>
+            <tr class="ng-scope" ng-repeat="item in anc.undecided" id="{{articulationResults.actionNeeded.undecidedList}}" ng-include src="'/app/requestDetails/partials/actionNeededTableBody.html'">
+            </tr>
+        </tbody>
+    </table>
+    <div ng-if="anc.showTable" class="section-header" id="section.spacer.temporary"></div>
+    <label ng-if="!anc.showTable"><span ng-bind="'requestDetails.articulation.noavailable' | i18n"></span></label>
+</div>

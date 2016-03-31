@@ -1,0 +1,50 @@
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
+    <h3>New Local Course</h3>
+    <div growl id="notificationMessage"></div>
+
+    <div class="panel-body">
+        <form class="form col-md-4" name="localCourseForm">
+            <div class="form-group fieldcontain  ">
+                <label class="control-label" for="courseSubject">
+                    Subject
+                    <span class="required-indicator">*</span>
+                </label>
+                <input type="text" class="form-control" id="courseSubject"  ng-model="localCourse.courseSubject" required>
+            </div>
+            <div class="form-group fieldcontain  ">
+                <label class="control-label" for="courseNumber">
+                    Number
+                    <span class="required-indicator">*</span>
+                </label>
+                <input type="text" class="form-control" id="courseNumber"  ng-model="localCourse.courseNumber" required>
+            </div>
+            <div class="form-group" ng-controller="articulationCourseLevelController">
+                <label for="localCourseLevel">Level</label>
+                <select id="localCourseLevel" ng-model="localCourse.courseLevel"
+                        data-ng-options="localCourseLevel as localCourseLevel.description for localCourseLevel in articulationCourseLevels">
+                </select>
+            </div>
+
+            <div class="form-group fieldcontain  ">
+                <label class="control-label" for="section">
+                    Section
+                </label>
+                <input type="text" class="form-control" id="section"  ng-model="localCourse.section">
+            </div>
+            <div>
+            <div class="form-group fieldcontain  ">
+                <label class="control-label" for="credits">
+                    Credits
+                </label>
+                <input type="number" class="form-control" id="credits"  ng-model="localCourse.credits">
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-md-12" ng-controller="localCourseSaveController">
+                    <button class="btn btn-default" ng-disabled="!localCourseForm.$valid" ng-click="save(localCourse)">Save Local Course</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,70 @@
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
+    <h3>Transfer Course Details</h3>
+    <div growl id="notificationMessage"></div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Subject : </span>
+                <span id="transferCourseSubject">{{transferCourse.courseSubject}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Number: </span>
+                <span id="transferCourseNumber">{{transferCourse.courseNumber}}</span><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Level: </span>
+                <span id="transferCourseLevel">{{transferCourse.courseLevel.description}}</span><br>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Begin Date: </span>
+                <span id="transferCourseFromDate">{{transferCourse.rule.beginDate| date:'yyyy-MM-dd' : 'GMT'}}</span><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >End Date: </span>
+                <span id="transferCourseToDate">{{transferCourse.rule.endDate| date:'yyyy-MM-dd' : 'GMT'}}</span><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Minimum Grade: </span>
+                <span id="transferCourseMinGrade">{{transferCourse.rule.minGrade}}</span><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-12">
+                <span >Create Date: </span>
+                <span id="transferCourseCreateDate">{{transferCourse.dateCreated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-12">
+                <span >Last Update Date: </span>
+                <span id="transferCourseUpdateDate">{{transferCourse.dateUpdated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</span><br>
+            </div>
+        </div>
+        <div class="row" ng-controller="modalsController">
+            <div class="col-sm-4 col-md-12">
+                <br/><button class="btn btn-danger" ng-click="launch('confirmDeleteTransferCourse')">Delete Transfer Course</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+

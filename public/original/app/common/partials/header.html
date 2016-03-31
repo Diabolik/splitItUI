@@ -1,0 +1,40 @@
+<!--Copyright 2015 Ellucian Company L.P. and its affiliates.-->
+<nav class="navbar navbar-ellucian navbar-fixed-top" ng-controller="AppDataController as appDataCtrl">
+
+        <!-- Brand and toggle get grouped for better mobile display -->
+
+            <span class="navbar-brand" ng-bind="'common.header.applicationTitle.label' | i18n"/>
+            <a id="configurationModuleMobile" href="#" role="button" ng-click="appDataCtrl.configurationModule()" class="navbar-toggle collapsed" aria-expanded="false">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li id="institutionContainer">
+                    <span class="navbar-text">
+                        <span ng-bind="'common.header.login.label' | i18n"/>
+                        <select id="institutionList" ng-model="appDataCtrl.selectedInstitutionId"
+                                ng-options="institution.id as institution.name for institution in appDataCtrl.institutionList"
+                                ng-change="appDataCtrl.setInstitution(appDataCtrl.selectedInstitutionId)"/>
+                    </span>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a id="configurationModule" href="#" role="button" ng-click="appDataCtrl.configurationModule()">
+                        <span class="glyphicon glyphicon-cog"></span>
+                        <span class="visible-md-inline visible-lg-inline" ng-bind="'common.header.settings.label' | i18n"/></span>
+                    </a>
+                </li>
+                <li class="hidden-xs">
+                    <a id="headerClose" href="#" role="button" aria-label="Close">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+</nav>
+
+
+

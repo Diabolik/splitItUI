@@ -1,0 +1,32 @@
+
+    <div>
+        <div class="panel-heading"><h3><span ng-bind="'configuration.courseLevelMap.title.tableHeader' | i18n"/></h3></div>
+        <div growl></div>
+        <p>
+            <a id="newCourseLevelMapBtn" href="#/courseLevelMap/new" role="button" class="btn btn-default btn-sm">
+                <span class="BannerIcon icon-left icon-identifier glyphicon glyphicon-plus" aria-hidden="true"/>
+                <span ng-bind="'configuration.courseLevelMap.new.button' | i18n"/>
+            </a>
+        </p>
+        <table class="table table-bordered">
+
+            <tr id = "rowHeader">
+                <th ng-bind="'configuration.courseLevelMap.code.tableHeader' | i18n"></th>
+                <th ng-bind="'configuration.courseLevelMap.destInstitution.tableHeader' | i18n"></th>
+                <th ng-bind="'configuration.courseLevelMap.srcInstitution.tableHeader' | i18n"></th>
+                <th ng-bind="'configuration.courseLevelMap.localCode.tableHeader' | i18n"></th>
+                <th ng-bind="'configuration.courseLevelMap.localDescription.tableHeader' | i18n"></th>
+            </tr>
+
+            <tr ng-repeat="courseLevelMap in cl.courseLevelMaps">
+                <td>{{courseLevelMap.code}}</td>
+                <td>{{courseLevelMap.destinationInstitutionId}}</td>
+                <td>{{courseLevelMap.sourceInstitutionId}}</td>
+                <td>{{courseLevelMap.localCourseLevel.code}}</td>
+                <td>{{courseLevelMap.localCourseLevel.description}}</td>
+            </tr>
+
+        </table>
+    </div>
+
+

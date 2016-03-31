@@ -1,0 +1,53 @@
+
+/* This will probably move to common or go away as the UXD offering is refined.  */
+.table-row {
+    padding: 9px 10px;
+    line-height: 1;
+    min-height: 1em;
+}
+.requestDetailsBeginDate {
+    padding-left: 30px
+}
+
+.step-progress li.visited {
+    color: #c71950;
+    font-weight: 400;
+    padding-left: 10px;
+}
+
+.step-progress li.active {
+    color: #c71950;
+    font-weight: 600;
+}
+
+.step-progress li:before {
+    top: 0px;
+    position: relative;
+}
+
+.requestUUID {
+    display: inline-block;
+    width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align:bottom;
+    transition: width 1s;
+}
+
+.requestUUID:hover {
+    display: inline-block;
+    width: 380px;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align:bottom;
+}
+
+.wrappable {
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.cellGroupingHeader {
+    border-bottom: none;
+}

@@ -1,0 +1,100 @@
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h3>Create One Time Equivalency</h3>
+
+    <div growl id="notificationMessage"></div>
+
+    <form class="form" name="resolveUndecidedArticulation">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-4 col-md-5">
+                    <span>Title:</span>
+                    <span id="title">{{studentCourse.title}}</span><br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 col-md-5">
+                    <span>Session:</span>
+                    <span id="session">{{studentCourse.session}}</span><br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 col-md-5">
+                    <span>Subject:</span>
+                    <span id="transferSubject">{{studentCourse.courseSubject}}</span><br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 col-md-5">
+                    <span>Number:</span>
+                    <span id="courseKey">{{studentCourse.courseNumber}}</span><br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 col-md-5">
+                    <span>Credits:</span>
+                    <span id="credits">{{studentCourse.creditsEarned}}</span><br>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-4 col-md-5">
+                    <span>Grade:</span>
+                    <span id="grade">{{studentCourse.transferGrade}}</span><br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 col-md-5">
+                    <span>Level:</span>
+                    <span id="level">{{studentCourse.courseLevel.description}}</span><br>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-4 col-md-5">
+                    <h3>Possible Equivalencies</h3>
+                </div>
+            </div>
+            <div id="localCourseList">
+
+                <table class="table table-hover">
+                    <th>&nbsp;&nbsp;</th>
+                    <th>Equivalency</th>
+                    <th>Local Courses</th>
+                    <tr ng-repeat="equivalency in equivalenyList" ng-class-odd="'stripedSection'">
+                        <td><input type="radio" ng-model="selection.selectedEquivalency" name="selectedEquivalency"
+                                   ng-value="equivalency"></td>
+                        <td>{{equivalency.id}}</td>
+                        <td>
+                            <ul>
+                                <li ng-repeat="localCourse in equivalency.localCourseList">
+                                    {{localCourse.courseKey}}
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 col-md-12" ng-controller="equivalencyOverrideController">
+                    <button class="btn btn-default" ng-click="saveOverrideSelection(studentCourse, selection.selectedEquivalency, true, false )">
+                        Resolve Undecided
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+
+

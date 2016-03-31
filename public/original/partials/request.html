@@ -1,0 +1,412 @@
+<div growl id="notificationMessage"></div>
+<div role="tabpanel">
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#request" aria-controls="request" role="tab" data-toggle="tab">Request</a>
+        </li>
+        <li role="presentation"><a href="#transcript" aria-controls="profile" role="tab"
+                                   data-toggle="tab">Transcript</a></li>
+        <li role="presentation"><a href="#articulation" aria-controls="messages" role="tab" data-toggle="tab">Articulation</a>
+        </li>
+        <li role="presentation"><a href="#equivalency" aria-controls="messages" role="tab" data-toggle="tab">Equivalencies
+            Overrides</a>
+        </li>
+        <li role="presentation"><a href="#publish" aria-controls="messages" role="tab" data-toggle="tab">Publish</a>
+        </li>
+        <li role="presentation"><a href="#translationMessages" aria-controls="messages" role="tab" data-toggle="tab" >Messages</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="request">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-xs-2">ID</label>
+
+                    <div class="col-xs-10">
+                        <p class="form-control-static">{{result.id}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Status</label>
+
+                    <div class="col-xs-10">
+                        <p class="form-control-static">{{getStatusDescription(result.statusCode)}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Source Institution</label>
+
+                    <div class="col-xs-10">
+                        <p class="form-control-static">{{result.sourceInstitution.name}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Create Date</label>
+
+                    <div class="col-xs-10">
+                        <p class="form-control-static"> {{result.dateCreated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Update Date</label>
+
+                    <div class="col-xs-10">
+                        <p class="form-control-static"> {{result.dateUpdated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="result.requestMessages">
+                    <div class="control-label col-xs-2">
+                        <!--<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>-->
+                        <a class="pointer" data-toggle="collapse" href="#requestMessages" aria-expanded="false"
+                           aria-controls="requestMessages">
+                            Messages (+)
+                        </a>
+                    </div>
+                    <div class="collapse col-xs-10" id="requestMessages">
+                        <div class="well">
+                            <ul ng-repeat="requestMessage in result.requestMessages">
+                                <li>{{requestMessage.description}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Last Update Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="requestActivity in result.requestActivities" ng-class-odd="'stripedSection'">
+                            <td>{{getStatusDescription(requestActivity.statusCode)}}</td>
+                            <td>{{requestActivity.dateUpdated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="transcript">
+            <div ng-controller="transcriptController">
+                <h3>Envelope</h3>
+
+                <p ng-hide="result.student.code">The transcript is currently blank. Begin creating a new transcript by
+                    creating an envelope first.</p>
+                <button type="button" class="btn btn-default" ng-click="createClick()" ng-hide="result.student.code">
+                    Create Envelope
+                </button>
+
+                <form class="form-horizontal"
+                      ng-show="result.student.code && (!result.student.lastName || !result.student.firstName)">
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Student Id</label>
+
+                        <div class="col-xs-10">
+                            <p class="form-control-static">{{result.student.code}} (Last name:
+                                {{result.student.lastName}}, First Name: {{result.student.firstName}})</p>
+                        </div>
+                    </div>
+                </form>
+
+                <form class="form-horizontal"
+                      ng-show="result.student.code && result.student.lastName && result.student.firstName">
+                    <div class="form-group">
+                        <label class="control-label col-xs-2">Student</label>
+
+                        <div class="col-xs-10">
+                            <p class="form-control-static">{{result.student.lastName}}, {{result.student.firstName}}</p>
+                        </div>
+                    </div>
+                </form>
+
+
+                <div class="table-responsive" ng-show="transcriptId">
+                    <h3>Sessions</h3>
+
+                    <p ng-show="transcriptId">Click below to add a new academic session.</p>
+                    <button type="button" class="btn btn-default" ng-click="createSessionClick()"
+                            ng-show="transcriptId">Create Session
+                    </button>
+                    <div id="session_{{$index}}" ng-repeat="session in result.sessions" class="col-md-12 "
+                         ng-class-odd="'stripedSection'">
+                        <div class="row"><b>{{session.id}}-{{session.code}}
+                            <label ng-if="session.description">({{session.description}}) </label>
+                            <label ng-if="session.beginDate">From: {{session.beginDate | date:'yyyy-MM-dd' :
+                                'UTC'}} </label>
+                            <label ng-if="session.endDate"> To: {{session.endDate | date:'yyyy-MM-dd' : 'UTC'}}</label></b>
+                            <br/>
+                            <a id="addCourse_{{$index}}" class="btn btn-default"
+                               href='#/requests/{{requestId}}/transcripts/{{result.id}}/sessions/{{session.id}}/courses'>Add
+                                Course</a>
+                            <table class="table table-striped">
+                                <th>Course Level</th>
+                                <th>Title</th>
+                                <th>Subject</th>
+                                <th>Number</th>
+                                <th>Credit Value</th>
+                                <th>Credit Earned</th>
+                                <th>Grade</th>
+                                <th>Begin Date</th>
+                                <tr ng-repeat="course in session.courses" ng-class-odd="'stripedSection'">
+                                    <td>{{course.courseLevel}}</td>
+                                    <td>{{course.title}}</td>
+                                    <td>{{course.subject}}</td>
+                                    <td>{{course.number}}</td>
+                                    <td>{{course.creditValue}}</td>
+                                    <td>{{course.creditEarned}}</td>
+                                    <td>{{course.academicGrade}}</td>
+                                    <td>{{course.beginDate | date:'yyyy-MM-dd' : 'UTC'}}</td>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-controller="transcriptEvaluationController">
+                <h3>Transcript Evaluation</h3>
+                <button type="button" class="btn btn-default" ng-click="evaluate($event)">Evaluate</button>
+                <div class="table-responsive" ng-show="showMessages">Messages
+                    <table class="table table-striped">
+                        <th>Field ID</th>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Message</th>
+                        <tr ng-repeat="result in result" ng-class-odd="'stripedSection'">
+                            <td>{{result.instanceId}}</td>
+                            <td>{{result.fieldName}}</td>
+                            <td>{{result.messageSeverity}}</td>
+                            <td>{{result.message}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="articulation" ng-controller="articulationResultsController">
+            <div class="row">
+                <div class="col-sm-4 col-md-12">
+                    <button class="btn btn-default" ng-click="articulate()">Articulate</button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <h3>Matched</h3>
+                <table class="table table-striped">
+                    <th>Student Course List</th>
+                    <th>Equivalent to these Local Courses</th>
+                    <th>Actions</th>
+                    <tr ng-repeat="matched in result.matched" ng-class-odd="'stripedSection'">
+                        <td>
+                            <ul ng-repeat="course in matched.studentCourseList">
+                                <li>
+                                    {{course.title}} <strong>Key</strong> {{course.courseKey}} <strong>Grade</strong>
+                                    {{course.transferGrade}}
+                                </li>
+                            </ul>
+                        </td>
+                        <td ng-repeat="equivalency in matched.equivalencyList">
+                            <ul ng-repeat="localCourse in equivalency.localCourseList">
+                                <li>
+                                    {{localCourse.courseKey}}
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul ng-repeat="equivalency in matched.equivalencyList">
+                                <div class="col-sm-4 col-md-12" ng-controller="equivalencyOverrideController">
+                                    <a href=""
+                                       ng-click="forwardToEquivalencyOverrideEdit(matched.studentCourseList, equivalency.id, true)">Override
+                                        Match</a>
+                                </div>
+                                <div class="col-sm-4 col-md-12" ng-controller="equivalencyDetailController">
+                                    <a href="" ng-click="viewEquivalency(equivalency)">View Equivalency</a>
+                                </div>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+                <label ng-if="result.matched.length <= 0">There aren't Matched courses.</label>
+            </div>
+
+            <div class="table-responsive">
+                <h3>Left Overs</h3>
+                <table class="table table-striped">
+                    <th>Title</th>
+                    <th>Course Key</th>
+                    <th>Transfer Grade</th>
+                    <th>Left over reason</th>
+                    <th>Match suggestions</th>
+                    <th>&nbsp;&nbsp;</th>
+                    <tr ng-repeat="leftOver in result.leftOver" ng-class-odd="'stripedSection'">
+                        <td ng-repeat="course in leftOver.studentCourseList">{{course.title}}</td>
+                        <td ng-repeat="course in leftOver.studentCourseList">{{course.courseKey}}</td>
+                        <td ng-repeat="course in leftOver.studentCourseList">{{course.transferGrade}}</td>
+                        <td ng-repeat="course in leftOver.studentCourseList">
+                            {{getStatusDescription(course.errorCode)}}
+                        </td>
+                        <td ng-repeat="course in leftOver.studentCourseList">
+                            <div ng-if="leftOver.suggestionList.length > 0" ng-then="stuff">
+                                <div ng-repeat="suggestion in leftOver.suggestionList"
+                                     ng-controller="suggestMatchController">
+                                <span ng-repeat="locCourse in sugEquivalency.localCourseList">
+                                <span ng-if="$last==true && $first==false"> & </span><span ng-if="$middle">, </span>{{locCourse.courseKey}}</span>
+                                <span>
+                                   with {{percentage}} match.
+                                </span>
+                                    <span ng-if="suggestion.isManualEquivalency"><b>Previously added manual
+                                        equivalency.</b></span>
+                                <span style="align:right" ng-controller="equivalencyOverrideController">
+                                    <a href=""
+                                       ng-click="saveOverrideSelection(course, sugEquivalency, false, true)">Use
+                                        suggestion </a></span>
+                                </div>
+                            </div>
+                            <div ng-if="leftOver.suggestionList.length == 0"><label>No suggestions found.</label></div>
+
+                        </td>
+                        <td ng-repeat="course in leftOver.studentCourseList">
+                            <div class="col-sm-4 col-md-12" ng-controller="equivalencyOverrideController">
+                                <a href=""
+                                   ng-click="forwardToEquivalencyOverrideEdit(leftOver.studentCourseList, null, false)">Override</a>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <label ng-if="result.leftOver.length <= 0">There aren't Left Over courses.</label>
+            </div>
+
+            <div class="table-responsive">
+                <h3>Undecided</h3>
+                <table class="table table-striped">
+                    <th>Student Course List</th>
+                    <th>Equivalencies List</th>
+                    <th>Resolution Options</th>
+                    <tr ng-repeat="undecided in result.undecided" ng-class-odd="'stripedSection'">
+                        <td>
+                            <ul ng-repeat="course in undecided.studentCourseList">
+                                <li>
+                                    {{course.title}} <strong>Key</strong> {{course.courseKey}} <strong>Grade</strong>
+                                    {{course.transferGrade}}
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul ng-repeat="equivalency in undecided.equivalencyList">
+                                <div>Equivalency: {{equivalency.id}}</div>
+                                <li ng-repeat="localCourse in equivalency.localCourseList">
+                                    {{localCourse.courseKey}}
+                                </li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul ng-repeat="course in undecided.studentCourseList">
+                                <li>
+                                    <div class="col-sm-4 col-md-12" ng-controller="equivalencyOverrideController">
+                                        <a href=""
+                                           ng-click="forwardToResolveUndecided(course, undecided.equivalencyList)">Choose
+                                            Option</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+                <label ng-if="result.undecided.length <= 0">There aren't Undecided courses.</label>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="equivalency" ng-controller="equivalencyOverrideListController">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <th>Transfer Course</th>
+                    <th>Session</th>
+                    <th>Approval Status</th>
+                    <th>Notes</th>
+                    <th>Local Courses</th>
+                    <tr ng-repeat="equivalency in equivalencyResult" ng-class-odd="'stripedSection'">
+                        <td>
+                            <ul ng-repeat="transferCourse in equivalency.transferCourseList">
+                                <li>
+                                    {{transferCourse.courseKey}} {{transferCourse.subjectCode}}
+                                    <label ng-if="transferCourse.notes"><strong>Notes:</strong></label>
+                                    {{transferCourse.notes}}
+                                </li>
+                            </ul>
+                        </td>
+                        <td>{{equivalency.session}}</td>
+                        <td>{{equivalency.statusCode == 'AP' ? 'Approved' : 'Needs Approval'}}</td>
+                        <td>{{equivalency.notes}}</td>
+                        <td>
+                            <ul ng-repeat="localCourse in equivalency.localCourseList">
+                                <li>
+                                    {{localCourse.courseKey}}
+                                    <label ng-if="localCourse.credits"><strong>Credits:</strong></label>
+                                    {{localCourse.credits}}
+                                    <label ng-if="localCourse.section"><strong>Section:</strong></label>
+                                    {{localCourse.section}}
+                                    <label ng-if="localCourse.courseLevel"><strong>Level:</strong></label>
+                                    {{localCourse.courseLevel.description}}
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+                <label ng-if="equivalencyResult.length <= 0">There aren't Equivalencies for this request.</label>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="publish">
+            <br/>
+
+            <div class="row">
+                <div class="col-sm-4 col-md-12">
+                    <button class="btn btn-default" ng-click="publish()">Publish</button>
+                </div>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="translationMessages" ng-controller="transcriptMessageController">
+            <br/>
+
+            <div class="row">
+                <div class="col-sm-4 col-md-12">
+                    <div class="table-responsive">
+
+                    </div>
+                    <table class="table table-striped" ng-show="translationMessagesResult.length > 0">
+                        <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Code</th>
+                            <th>Value</th>
+                            <th>Last Update Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="message in translationMessagesResult" ng-class-odd="'stripedSection'">
+                            <td>{{message.type}}</td>
+                            <td>{{message.code}}</td>
+                            <td>{{message.value}}</td>
+                            <td>{{message.dateUpdated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+

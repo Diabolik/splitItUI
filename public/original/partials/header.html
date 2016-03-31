@@ -1,0 +1,71 @@
+<div class="container-fluid page-container" ng-controller="headerController">
+    <header>
+        <div class="row">
+            <nav class="navbar navbar-default navbar-utility" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header"> </div>
+                    <div class="hidden-xs">
+                        <div class="navbar-form navbar-right search-form" role="search">
+
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" role="button" ng-click="goToNew()">
+                                    GO TO NEW INTERFACE
+                                </a>
+                            </li>
+                            <li>
+
+                            <li class="dropdown">
+                                <label style="color: #fff;" for="subjectCode">
+                                    Login As:
+                                </label>
+                                <select ng-model="selectedInstitutionId"
+                                        data-ng-options="institution.id as institution.name for institution in institutions"
+                                        ng-change="setInstitution(selectedInstitutionId)">
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <nav class="navbar navbar-default navbar-site" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <div class="navbar-header navbar-left">
+                            <a class="navbar-brand" href="#/">
+                                <img alt="Ellucian" src="/images/ellucian-logo.png">
+                            </a>
+                    </div>
+                    <div id="site-nav" class="navbar-collapse navbar-left collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#/{{institutionId}}">Home</a></li>
+                            <li><a href="#/requests">Requests</a></li>
+                            <li><a href="#/agreements">Agreements</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" role="button" target="_self" href="#/Settings/">Settings</a>
+                                <ul class="dropdown-menu" aria-labelledby="software-dropmenu" role="menu" style="display: none;">
+                                    <li>
+                                        <a target="_self" href="#/SchoolSettings/">School Settings</a>
+                                    </li>
+                                    <li>
+                                        <a target="_self" href="#/SchoolSettings/">Grade Settings</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+</div>

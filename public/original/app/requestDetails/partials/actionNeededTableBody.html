@@ -1,0 +1,72 @@
+<!--Copyright 2015 Ellucian Company L.P. and its affiliates.-->
+    <td id="requestDetails.actionNeededTab.table.action[{{$index}}]" class="ng-scope ng-binding" tabindex="0">
+        <ul class="list-unstyled" ng-repeat="course in item.studentCourseList">
+            <a id="actionNeededDetails-{{$index}}" href ng-click="anc.goToActionNeededDetails(item.id)">View</a>
+        </ul>
+
+    </td>
+    <td id="requestDetails.actionNeededTab.table.error[{{$index}}]" class="ng-scope ng-binding">
+        <ul class="list-unstyled" ng-repeat="course in item.studentCourseList">
+            <li>{{anc.getTranslatedStatus(course.errorCode)}}</li>
+        </ul>
+    </td>
+    <td id="requestDetails.actionNeededTab.table.beginDate[{{$index}}]" class="ng-scope ng-binding">
+        <ul class="list-unstyled" ng-repeat="course in item.studentCourseList">
+            <li>{{course.beginDate | date:'yyyy-MM-dd' : 'GMT'}}</li>
+        </ul>
+    </td>
+    <td id="requestDetails.actionNeededTab.table.session[{{$index}}]" class="ng-scope ng-binding">
+        <ul class="list-unstyled" ng-repeat="course in item.studentCourseList">
+            <li class="wrappable">{{course.session}}</li>
+        </ul>
+    </td>
+    <td id="requestDetails.actionNeededTab.table.courseSubject[{{$index}}]" class="ng-scope ng-binding">
+        <ul class="list-unstyled" ng-repeat="course in item.studentCourseList">
+            <li class="wrappable">{{course.courseSubject}}</li>
+        </ul>
+    </td>
+    <td id="requestDetails.actionNeededTab.table.courseNumber[{{$index}}]" class="ng-scope ng-binding">
+        <ul class="list-unstyled" ng-repeat="course in item.studentCourseList">
+            <li class="wrappable">{{course.courseNumber}}</li>
+        </ul>
+    </td>
+    <td id="requestDetails.actionNeededTab.table.courseLevel[{{$index}}]" class="ng-scope ng-binding">
+        <ul class="list-unstyled" ng-repeat="course in item.studentCourseList">
+            <li class="wrappable">{{course.courseLevel.description}}</li>
+        </ul>
+    </td>
+    <td id="requestDetails.actionNeededTab.table.creditsEarned[{{$index}}]" class="ng-scope ng-binding">
+        <ul class="list-unstyled" ng-repeat="course in item.studentCourseList">
+            <li>{{course.creditsEarned}}</li>
+        </ul>
+    </td>
+    <td id="requestDetails.actionNeededTab.table.transferGrade[{{$index}}]" class="ng-scope ng-binding">
+        <ul class="list-unstyled" ng-repeat="course in item.studentCourseList">
+            <li>{{course.transferGrade}}</li>
+        </ul>
+    </td>
+    <td id="requestDetails.actionNeededTab.table.recommendation[{{$index}}]" class="ng-scope ng-binding">
+        <ul class="list-unstyled" ng-repeat="suggestion in item.suggestionList">
+            <li>
+                <span class="col-xs-8 col-sm-10 col-md-10 col-lg-10 col-xl-10 text-left" ng-repeat="locCourse in suggestion.equivalency.localCourseList">
+                    <span ng-if="$last==true && $first==false"> & </span>
+                    <span ng-if="$middle" >,</span>
+                    {{locCourse.courseKey}}
+                </span>
+                <span class="col-xs-2 col-sm-1 col-md-1 col-lg-1 col-xl-1">{{suggestion.percentage}}</span>
+                <span class="col-xs-2 col-sm-1 col-md-1 col-lg-1 col-xl-1" ng-bind="'articulationResults.actionNeeded.suggestionPercentage' | i18n" />
+            </li>
+        </ul>
+    </td>
+    <td id="requestDetails.actionNeededTab.table.actionRecommendation[{{$index}}]" class="ng-scope ng-binding">
+        <!-- This code is useful, however I'm commenting it since it is disabled at the moment, but we are going to use it later. -->
+        <!--<ul class="list-unstyled" ng-repeat="course in item.suggestionList">-->
+        <!--<li class="text-left">-->
+        <!--<input id="articulationResults.actionNeeded.radio.use_{{item.id}}" type="radio" name="actionRadio_{{item.id}}"/>-->
+        <!--<label for="articulationResults.actionNeeded.radio.use_{{item.id}}" ng-bind="'articulationResults.actionNeeded.action.use.tableHeader' | i18n"/>-->
+        <!--<br>-->
+        <!--<input id="articulationResults.actionNeeded.radio.ignore_{{item.id}}" type="radio" name="actionRadio_{{item.id}}"/>-->
+        <!--<label for="articulationResults.actionNeeded.radio.ignore_{{item.id}}" ng-bind="'articulationResults.actionNeeded.action.ignore.tableHeader' | i18n"/>-->
+        <!--</li>-->
+        <!--</ul>-->
+    </td>

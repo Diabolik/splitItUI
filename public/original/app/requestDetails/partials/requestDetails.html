@@ -1,0 +1,178 @@
+<!--Copyright 2015 Ellucian Company L.P. and its affiliates.-->
+<head>
+    <link href="./css/requestDetails.css" rel="stylesheet" />
+</head>
+<nav>
+    <ul class="breadcrumb">
+        <li><a id="requestDetails.nav.home" href="../home/#/"><span ng-bind="'common.breadcumb.home' | i18n"/></a></li>
+        <li><a id="requestDetails.nav.requestListing" href="../requestListing/#/"><span
+                ng-bind="'common.breadcumb.requestListing' | i18n"/></a></li>
+        <li ng-bind="'requestDetails.breadcrumbTitle' | i18n"></li>
+    </ul>
+</nav>
+<div id="requestDetails">
+    <div class="col-sm-4 col-md-12">
+        <!-- Collapsible Header -->
+        <div class="collapsable-group" id="requestDetails-collapse-group" role="tablist" aria-multiselectable="true">
+            <div class="collapsable-group collapsable-group-default">
+                <div class="collapsable-group-heading" role="tab" id="requestDetailsGroupHeading">
+                    <h5 class="collapsable-group-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#requestDetailsCollapseGroup"
+                           aria-expanded="true" aria-controls="requestDetailsCollapseGroup" class="">
+                            <div><span ng-bind="'requestDetails.statusBar.student' | i18n"> </span><span class="unstyled-text"> {{rdc.request.student}}</span></div>
+                            <div><span ng-bind="'requestDetails.statusBar.institution' | i18n"> </span><span class="unstyled-text"> {{rdc.request.institution}}</span></div>
+                            <div><span ng-bind="'requestDetails.statusBar.request' | i18n"> </span> <span class="requestUUID unstyled-text"> {{rdc.request.id}}</span></div>
+                     <span class="BannerIcon icon-right icon-arrow" aria-hidden="true">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="#869fb1" d="M21.2 4.5l2.8 2.667-12 11.429-12-11.429 2.8-2.667 9.2 8.762z"></path>
+                        </svg>
+                     </span>
+                        </a>
+                    </h5>
+                </div>
+                <!-- Collapsible Body -->
+                <div id="requestDetailsCollapseGroup" class="collapsable-group-collapse collapse in" role="tab" aria-labelledby="requestDetailsGroupHeading" aria-expanded="true">
+                    <div class="collapsable-group-body">
+                        <div role="tabpanel">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li id="requestDetails.tabList.summary" role="presentation" class="active">
+                                    <a href="#summaryTab" aria-controls="request" role="tab" data-toggle="tab" aria-expanded="false"
+                                       ng-click="rdc.initData()"><span ng-bind="'requestDetails.tab.summary' | i18n"/></a>
+                                </li>
+                                <li  id="requestDetails.tabList.actionNeeded" role="presentation">
+                                    <a href="#actionNeededTab" aria-controls="actionNeeded" role="tab"
+                                       data-toggle="tab" aria-expanded="false"><span ng-bind="'requestDetails.tab.actionNeeded' | i18n"/></a>
+                                </li>
+                                <li id="requestDetails.tabList.matches" role="presentation">
+                                    <a href="#matchesTab" aria-controls="matches" role="tab" data-toggle="tab" aria-expanded="false">
+                                        <span ng-bind="'requestDetails.tab.matches' | i18n"/></a>
+                                </li>
+                                <li id="requestDetails.tabList.transcript" role="presentation">
+                                    <a href="#transcriptTab" aria-controls="profile" role="tab" ng-click="rdc.initData()"
+                                       data-toggle="tab" aria-expanded="false"><span ng-bind="'requestDetails.tab.transcript' | i18n"/></a>
+                                </li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <!--Summary Tab-->
+                                <div role="tabpanel" class="tab-pane fade in active" id="summaryTab">
+                                    <div  class="section-header" ng-controller="ProgressBarController as pbc">
+                                        <span class="sr-only">{{pbc.progressBar.ariaStatusBar.valueText}}</span>
+                                        <div id="progressBar.wrap" class="step-progress-wrap" role="progressbar" aria-valuenow="{{pbc.progressBar.ariaStatusBar.valueNow}}"
+                                             aria-valuemin="{{pbc.progressBar.ariaStatusBar.valueMin}}" aria-valuetext="{{pbc.progressBar.ariaStatusBar.valueText}}"
+                                             aria-valuemax="{{pbc.progressBar.ariaStatusBar.valueMax}}">
+                                            <ol id="progressBar.list" class="step-progress" >
+                                                <li id="progressBar.listStep[1]" class="{{pbc.progressBar.statusCodeBar[1]}}">
+                                                    <span ng-bind="'requestDetails.summary.trackBar[1]' | i18n" />
+                                                </li>
+                                                <li id="progressBar.listStep[2]" class="{{pbc.progressBar.statusCodeBar[2]}}">
+                                                    <span ng-bind="'requestDetails.summary.trackBar[2]' | i18n" />
+                                                </li>
+                                                <li id="progressBar.listStep[3]" class="{{pbc.progressBar.statusCodeBar[3]}}">
+                                                    <span ng-bind="'requestDetails.summary.trackBar[3]' | i18n" />
+                                                </li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="row">
+                                            <div id="requestDetails.statusDescription.label"
+                                                 ng-bind="'requestDetails.label.requestStatus' | i18n" class="col-sm-3 col-md-3"></div>
+                                            <div id="requestDetails.statusDescription" class="col-sm-3 col-md-6">
+                                                {{rdc.request.statusDescription}}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div id="requestDetails.dateUpdated.label"
+                                                 ng-bind="'requestDetails.label.lastUpdated' | i18n" class="col-sm-3 col-md-3"></div>
+                                            <div id="requestDetails.dateUpdated" class="col-sm-3 col-md-6">{{rdc.request.dateUpdated|
+                                                date:"yyyy-MM-dd hh:mm a"}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Action Needed Tab-->
+                                <div role="tabpanel" class="tab-pane fade" id="actionNeededTab" ng-include src="'/app/requestDetails/partials/actionNeeded.html'">
+                                </div>
+                                <!--Matches Tab-->
+                                <div role="tabpanel" class="tab-pane fade" id="matchesTab" ng-include src="'/app/requestDetails/partials/matchesDetails.html'">
+                                </div>
+                                <!--Transcript Tab-->
+                                <div role="tabpanel" class="tab-panel fade" id="transcriptTab">
+                                    <div id="transcript.details.foreach" class="section"
+                                         ng-repeat="session in rdc.transcript.sessions | orderBy: '-dateUpdated'">
+                                        <!-- Table Header -->
+                                        <div class="container-fluid table-row left-align grid-overlay" id="requestDetails.transcript.tableHeader">
+                                            <div class="row">
+                                                <strong>
+                                                    <span class="col-md-6">{{'requestDetails.transcript.sessionName.tableHeader' | i18n}}: {{session.description}}   </span>
+                                                    <span class="col-md-1"></span>
+                                                    <span class="col-md-6 requestDetailsBeginDate">   {{'requestDetails.transcript.sessionDate.tableHeader' | i18n}}: {{session.beginDate}}</span>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                        <!-- Table content-->
+                                        <div class="section">
+                                            <table id="dataTable" class="data-table" tabindex="0">
+                                                <thead>
+                                                <tr>
+                                                    <th id="requestDetails.transcriptTab.tableHeader.title" ng-bind="'requestDetails.transcript.title.tableHeader' | i18n">
+                                                    </th>
+                                                    <th id="requestDetails.transcriptTab.tableHeader.subject" ng-bind="'requestDetails.transcript.subject.tableHeader' | i18n">
+                                                    </th>
+                                                    <th id="requestDetails.transcriptTab.tableHeader.number" ng-bind="'requestDetails.transcript.number.tableHeader' | i18n">
+                                                    </th>
+                                                    <th id="requestDetails.transcriptTab.tableHeader.courseLevel" ng-bind="'requestDetails.transcript.courseLevel.tableHeader' | i18n">
+                                                    </th>
+                                                    <th id="requestDetails.transcriptTab.tableHeader.creditEarned" ng-bind="'requestDetails.transcript.creditEarned.tableHeader' | i18n">
+                                                    </th>
+                                                    <th id="requestDetails.transcriptTab.tableHeader.grade" ng-bind="'requestDetails.transcript.grade.tableHeader' | i18n">
+                                                    </th>
+                                                    <th id="requestDetails.transcriptTab.tableHeader.localLevel" ng-bind="'requestDetails.transcript.localLevel.tableHeader' | i18n">
+                                                    </th>
+                                                    <th id="requestDetails.transcriptTab.tableHeader.localGrade" ng-bind="'requestDetails.transcript.localGrade.tableHeader' | i18n">
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr class="ng-scope" ng-repeat="course in session.courses">
+                                                    <td id="requestDetails.transcriptTab.table.title[{{$index}}]" class="ng-scope ng-binding wrappable" tabindex="0">
+                                                        <strong>{{course.title}} </strong>
+                                                    </td>
+                                                    <td id="requestDetails.transcriptTab.table.subject[{{$index}}]" class="ng-scope ng-binding wrappable">
+                                                        {{course.subject}}
+                                                    </td>
+                                                    <td id="requestDetails.transcriptTab.table.number[{{$index}}]" class="ng-scope ng-binding wrappable">
+                                                        {{course.number}}
+                                                    </td>
+                                                    <td id="requestDetails.transcriptTab.table.courseLevel[{{$index}}]" class="ng-scope ng-binding wrappable">
+                                                        {{course.courseLevel}}
+                                                    </td>
+                                                    <td id="requestDetails.transcriptTab.table.creditEarned[{{$index}}]" class="ng-scope ng-binding">
+                                                        {{course.creditEarned}}
+                                                    </td>
+                                                    <td id="requestDetails.transcriptTab.table.academicGrade[{{$index}}]" class="ng-scope ng-binding">
+                                                        {{course.academicGrade}}
+                                                    </td>
+                                                    <td id="requestDetails.transcriptTab.table.localLevel[{{$index}}]" class="ng-scope ng-binding wrappable">
+                                                        {{course.localLevel.description}}
+                                                    </td>
+                                                    <td id="requestDetails.transcriptTab.table.grade[{{$index}}]" class="ng-scope ng-binding">
+                                                        {{course.grade.grade}}
+                                                    </td>
+                                                <tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="section-header" id="section.spacer.temporary"></div>
+                                    </div>
+                                    <label ng-if="!rdc.showTable"><span ng-bind="'requestDetails.transcript.noavailable' | i18n"></span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

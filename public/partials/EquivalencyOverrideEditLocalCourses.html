@@ -1,0 +1,157 @@
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
+    <h3>Create One Time Equivalency</h3>
+    <div growl id="notificationMessage"></div>
+
+    <div class="col-md-8" data-ng-init="init()">
+
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Subject:</span>
+                <span id="transferSubject">{{equivalency.transferCourseList[0].courseSubject}}</span><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Number:</span>
+                <span id="courseKey">{{equivalency.transferCourseList[0].courseNumber}}</span><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span>Credits:</span>
+                <span id="transferCredits">{{equivalency.transferCourseList[0].rule.minCredits}}</span><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Grade:</span>
+                <span id="transferGrade">{{equivalency.transferCourseList[0].rule.minGrade}}</span><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Level:</span>
+                <span id="transferLevel">{{equivalency.transferCourseList[0].courseLevel.description}}</span><br>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel-body">
+
+        <form class="form col-md-4" name="oneTimeEquivalencyForm">
+            <div class="form-group fieldcontain  ">
+                <label class="control-label" for="transferCourseNotes">
+                    Transfer Course Note:
+                </label>
+                <textarea type="text" class="form-control" id="transferCourseNotes" rows="3"  ng-model="equivalency.transferCourseList[0].notes" ></textarea>
+            </div>
+            <br>
+            <div class="form-group fieldcontain ">
+                <label class="control-label" for="statusCode">
+                    Status Code
+                </label>
+                <select id="statusCode" ng-model="equivalency.statusCode" >
+                    <option value="AP" selected="selected" >Approved</option>
+                    <option value="NA">Needs Approval</option>
+                </select>
+            </div>
+
+            <br>
+
+            <div class="form-group fieldcontain  ">
+                <label class="control-label" for="session">
+                    Session
+                    <span class="required-indicator">*</span>
+                </label>
+                <input type="text" class="form-control" id="session"  ng-model="equivalency.session" required>
+            </div>
+
+            <div id="localCourseList" >
+                <h3>Local Course List</h3>
+                <table class="table table-striped">
+                    <th>Subject</th><th>Number</th><th>Section</th><th>Level</th><th>Credits</th><th>&nbsp;&nbsp;</th>
+                    <tr ng-repeat="listLocalCourse in equivalency.localCourseList" ng-class-odd="'stripedSection'">
+                        <td>{{listLocalCourse.courseSubject}}</td>
+                        <td>{{listLocalCourse.courseNumber}}</td>
+                        <td>{{listLocalCourse.section}}</td>
+                        <td>{{listLocalCourse.courseLevel.description}}</td>
+                        <td>{{listLocalCourse.credits}}</td>
+                        <td>
+                            <a href="" ng-click="editLocalCourse(listLocalCourse)">Edit</a>
+                            <a href="" ng-click="removeLocalCourse(listLocalCourse.id)">Remove</a>
+
+                        </td>
+                    </tr>
+                </table>
+                <label ng-if="equivalency.localCourseList.length <= 0">There aren't local courses.</label>
+            </div>
+
+            <div id="addLocalCourse" ng-show="showLocalCourseForm" >
+                <div class="form-group fieldcontain  ">
+                    <label class="control-label" for="courseSubject">
+                        Subject
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input type="text" class="form-control" id="courseSubject"  ng-model="localCourse.courseSubject" required>
+                </div>
+                <div class="form-group fieldcontain  ">
+                    <label class="control-label" for="courseNumber">
+                        Number
+                        <span class="required-indicator">*</span>
+                    </label>
+                    <input type="text" class="form-control" id="courseNumber"  ng-model="localCourse.courseNumber" required>
+                </div>
+
+                <div class="form-group" ng-controller="articulationCourseLevelController">
+                    <label for="localCourseLevel">Level</label>
+                    <select id="localCourseLevel" ng-model="localCourse.courseLevel.id"
+                            data-ng-options="localCourseLevel.id as localCourseLevel.description for localCourseLevel in articulationCourseLevels">
+                    </select>
+                </div>
+
+                <div class="form-group fieldcontain  ">
+                    <label class="control-label" for="section">
+                        Section
+                    </label>
+                    <input type="text" class="form-control" id="section"  ng-model="localCourse.section">
+                </div>
+                <div class="form-group fieldcontain  ">
+                    <label class="control-label" for="credits">
+                        Credits
+                    </label>
+                    <input type="number" class="form-control" id="credits"  ng-model="localCourse.credits">
+                </div>
+                <div class="row">
+                    <button class="btn btn-default" ng-disabled="!oneTimeEquivalencyForm.$valid"
+                            ng-click="addLocalCourse(localCourse)" >Add</button>
+                    <button class="btn btn-default"
+                            ng-click="cancelAddLocalCourse()" >Cancel</button>
+                </div>
+
+            </div>
+
+            <div class="form-group fieldcontain  ">
+                <label class="control-label" for="equivalencyNotes">
+                    Note:
+                </label>
+                <textarea type="text" class="form-control" id="equivalencyNotes" rows="3"  ng-model="equivalency.notes" > </textarea>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4 col-md-12">
+                    <button class="btn btn-default" ng-click="addNewLocalCourse()" ng-show="!showLocalCourseForm" >Add New Local Course</button>
+                </div>
+                <br/><br/>
+
+                <button class="btn btn-default" ng-click="save()">Save One Time Equivalency</button>
+                <button class="btn btn-default" ng-click="cancelOverrideEquivalency()">Cancel</button>
+            </div>
+
+        </form>
+    </div>
+</div>

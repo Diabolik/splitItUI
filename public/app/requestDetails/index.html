@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--Copyright 2015 Ellucian Company L.P. and its affiliates.-->
+<html xmlns:ng="http://angularjs.org" id="ng-app">
+<head ng-include src="'/app/common/partials/head_content.html'">
+</head>
+
+<body role="document">
+<div class="body-wrapper">
+    <div ng-include src="'/app/common/partials/sidebar.html'"></div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container-fluid content-wrapper" role="main">
+        <div ng-include src="'/app/common/partials/header.html'"></div>
+        <div ng-view style='margin-left: 10px;margin-right: 10px; margin-top: 1px;'></div>
+        <div ng-include src="'/app/common/partials/footer.html'"></div>
+    </div>
+
+    <script src="/lib/jquery-2.1.4.min.js"></script>
+    <script src="/lib/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="../common/common_bundle.js"></script>
+    <script src="requestDetails_bundle.js"></script>
+
+</div>
+<footer>
+    <script src="../common/uxd/ellucian-theme.js"></script>
+</footer>
+</body>
+</html>

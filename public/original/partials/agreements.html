@@ -1,0 +1,30 @@
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div growl id="notificationMessage"></div>
+    <div class="panel-heading"><h3>Agreements</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <th>Institution</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Program</th>
+                <th>Catalog Year</th>
+                <th>Create Date</th>
+                <th>Update Date</th>
+                <tr ng-repeat="agreement in results" ng-class-odd="'stripedSection'">
+                    <td><a href='#/agreements/{{agreement.id}}'>{{agreement.sourceInstitution.name}}</a></td>
+                    <td>{{agreement.name}}</td>
+                    <td>{{agreement.description}}</td>
+                    <td>{{agreement.program}}</td>
+                    <td>{{agreement.catalogYear}}</td>
+                    <td>{{agreement.dateCreated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</td>
+                    <td>{{agreement.dateUpdated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-md-12" ng-controller="agreementSaveController">
+            <br/><a href="#/agreement/save" role="button" class="btn btn-default btn-large">New Agreement</a>
+        </div>
+    </div>
+</div>

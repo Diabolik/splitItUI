@@ -1,0 +1,93 @@
+<!--Copyright 2015 Ellucian Company L.P. and its affiliates.-->
+<div id="articulationResults.matches.table" class="section" ng-controller="MatchesDetailsController as cl">
+    <table ng-if="cl.showTable" id="dataTable" class="data-table" tabindex="0">
+        <thead>
+        <tr class="cellGroupingHeader">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th  id="requestDetails.matchesTab.tableHeader.transfer" scope="col" ng-bind="'articulationResults.matches.fromTranscript.tableHeader' | i18n" colspan="2">
+            </th>
+            <th id="requestDetails.matchesTab.tableHeader.local" scope="col" ng-bind="'articulationResults.matches.newLocalCourse.tableHeader' | i18n" colspan="2">
+            </th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+        <tr>
+            <th id="requestDetails.matchesTab.tableHeader.action" scope="col" ng-bind="'articulationResults.matches.action.tableHeader' | i18n">
+            </th>
+            <th  id="requestDetails.matchesTab.tableHeader.date" scope="col" ng-bind="'articulationResults.matches.date.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.matchesTab.tableHeader.session" scope="col"  ng-bind="'articulationResults.matches.session.tableHeader' | i18n">
+            </th>
+            <th  id="requestDetails.matchesTab.tableHeader.subject" scope="col" ng-bind="'articulationResults.matches.subject.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.matchesTab.tableHeader.course" scope="col" ng-bind="'articulationResults.matches.course.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.matchesTab.tableHeader.localSubject" scope="col" ng-bind="'articulationResults.matches.subject.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.matchesTab.tableHeader.localCourse" scope="col" ng-bind="'articulationResults.matches.course.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.matchesTab.tableHeader.level" scope="col" ng-bind="'articulationResults.matches.level.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.matchesTab.tableHeader.credits" scope="col" ng-bind="'articulationResults.matches.credits.tableHeader' | i18n">
+            </th>
+            <th id="requestDetails.matchesTab.tableHeader.grade" scope="col" ng-bind="'articulationResults.matches.grade.tableHeader' | i18n">
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr id="{{match.id}}" ng-repeat="match in cl.matches">
+            <td id="requestDetails.matchesTab.table.action[{{$index}}]" tabindex="0" ></td>
+            <td id="requestDetails.matchesTab.table.beginDate[{{$index}}]" class="ng-scope ng-binding">
+                <ul class="list-unstyled" ng-repeat="course in match.studentCourseList">
+                    <li class="wrappable" >{{course.beginDate | date:'yyyy-MM-dd' : 'GMT'}}</li>
+                </ul>
+            </td>
+            <td id="requestDetails.matchesTab.table.session[{{$index}}]" class="ng-scope ng-binding">
+                <ul class="list-unstyled" ng-repeat="course in match.studentCourseList">
+                    <li class="wrappable">{{course.session}}</li>
+                </ul>
+            </td>
+            <td id="requestDetails.matchesTab.table.courseSubject[{{$index}}]" class="ng-scope ng-binding">
+                <ul class="list-unstyled" ng-repeat="course in match.studentCourseList">
+                    <li class="wrappable">{{course.courseSubject}}</li>
+                </ul>
+            </td>
+            <td id="requestDetails.matchesTab.table.courseNumber[{{$index}}]" class="ng-scope ng-binding">
+                <ul class="list-unstyled" ng-repeat="course in match.studentCourseList">
+                    <li class="wrappable">{{course.courseNumber}}</li>
+                </ul>
+            </td>
+            <td id="requestDetails.matchesTab.table.localCourseSubject[{{$index}}]" class="ng-scope ng-binding" ng-repeat="equivalency in match.equivalencyList">
+                <ul class="list-unstyled" ng-repeat="course in equivalency.localCourseList">
+                    <li class="wrappable">{{course.courseSubject}}</li>
+                </ul>
+            </td>
+            <td id="requestDetails.matchesTab.table.localCourseNumber[{{$index}}]" class="ng-scope ng-binding" ng-repeat="equivalency in match.equivalencyList">
+                <ul class="list-unstyled" ng-repeat="course in equivalency.localCourseList">
+                    <li class="wrappable">{{course.courseNumber}}</li>
+                </ul>
+            </td>
+            <td id="requestDetails.matchesTab.table.courseLevel[{{$index}}]" class="ng-scope ng-binding" ng-repeat="equivalency in match.equivalencyList">
+                <ul class="list-unstyled" ng-repeat="course in equivalency.localCourseList">
+                    <li class="wrappable">{{course.courseLevel.description}}</li>
+                </ul>
+            </td>
+            <td id="requestDetails.matchesTab.table.credits[{{$index}}]" class="ng-scope ng-binding" ng-repeat="equivalency in match.equivalencyList">
+                <ul class="list-unstyled" ng-repeat="course in equivalency.localCourseList">
+                    <li class="wrappable">{{course.credits}}</li>
+                </ul>
+            </td>
+            <td id="requestDetails.matchesTab.table.transferGrade[{{$index}}]" class="ng-scope ng-binding" ng-repeat="equivalency in match.equivalencyList">
+                <ul class="list-unstyled" ng-repeat="course in equivalency.localCourseList">
+                    <li class="wrappable">{{course.transferGrade}}</li>
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div ng-if="cl.showTable" class="section-header" id="section.spacer.temporary"></div>
+    <label ng-if="!cl.showTable"><span ng-bind="'requestDetails.articulation.noavailable' | i18n"></span></label>
+</div>

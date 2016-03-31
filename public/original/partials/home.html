@@ -1,0 +1,92 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h1 class="page-header">Dashboard</h1>
+
+    <p>Test Notes: Institution id of [{{institutionId}}] If blank be sure to select an institution to login as, in the
+        top right.</p>
+
+
+
+        <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <button class="btn btn-danger circle-button">{{requestSummary.actionRequired}}</button>
+                <br/>
+                <span class="text-muted">Waiting for your action</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <button class="btn btn-info circle-button">{{requestSummary.approvalRequired}}</button>
+                <br/>
+                <span class="text-muted">Waiting for approval</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <button class="btn btn-success circle-button">{{requestSummary.completedThisWeek}}</button>
+                <br/>
+                <span class="text-muted">Completed this month</span>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <input type="text" id="reportQuery" placeholder=" Enter your search query" ng-model="reportQuery">
+        <button ng-click="searchRequests(reportQuery)">Submit</button>
+    </div>-->
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-controller="searchController">
+    <h2>Search everywhere</h2>
+    <input type="text" ng-model="searchQuery" size="30" placeholder="Search">
+    <button class="btn btn-default" ng-click="search()">Go!</button>
+
+    <div class="panel-heading" ng-hide="!results">
+        <h3>Results</h3>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <th>Type</th>
+                <th>Result</th>
+                <tr ng-repeat="result in results" ng-class-odd="'stripedSection'">
+                    <td>
+
+                        <span ng-if="result._type=='request'">Request</span>
+                        <span ng-if="result._type=='agreement'">Agreement</span>
+                    </td>
+                    <td>
+                        <a ng-if="result._type=='request'" href='#/requests/{{result._id}}'>{{result._id}}</a>
+                        <a ng-if="result._type=='agreement'" href='#/agreements/{{result._id}}'>{{result._id}}</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h2>Activity Stream</h2>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Request</th>
+                    <th>Source Institution</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Status</th>
+                    <th>Last Update Date</th>
+                    <th>Activity Entries</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="activityStream in activityStreamList" ng-class-odd="'stripedSection'">
+                    <td><a href='#/requests/{{activityStream[0].requestActivityId.id}}'>{{activityStream[0].requestActivityId.id}}</a>
+                    </td>
+                    <td>Information unavailable.</td>
+                    <td>Information unavailable.</td>
+                    <td>Information unavailable.</td>
+                    <td>{{getStatusDescription(activityStream[0].statusCode)}}</td>
+                    <td>{{activityStream[0].dateUpdated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</td>
+                    <td>{{activityStream[1]}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+

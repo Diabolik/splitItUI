@@ -1,0 +1,26 @@
+
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div growl id="notificationMessage"></div>
+    <div class="panel-heading"><h3>System Messages</h3>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <th>ID</th>
+                <th>Type</th>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Create Date</th>
+                <th>Update Date</th>
+                <tr ng-repeat="message in results" ng-class-odd="'stripedSection'">
+                    <td>{{message.id}}</td>
+                    <td>{{message.type}}</td>
+                    <td>{{message.code}}</td>
+                    <td>{{message.description}}</td>
+                    <td>{{message.dateCreated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</td>
+                    <td>{{message.dateUpdated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+

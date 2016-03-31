@@ -1,0 +1,32 @@
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div growl id="notificationMessage"></div>
+
+
+
+        <div class="panel-heading"><h3>Requests</h3>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <th>Request</th>
+                    <th>Status</th>
+                    <th>Source Institution</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Create Date</th>
+                    <th>Update Date</th>
+                    <tr ng-repeat="request in results | orderBy: '-dateUpdated'" ng-class-odd="'stripedSection'">
+                        <td><a href='#/requests/{{request.id}}'>{{request.id}}</a></td>
+                        <td>{{getStatusDescription(request.statusCode)}}</td>
+                        <td>{{request.sourceInstitution.name}}</td>
+                        <td>{{request.transcript.student.firstName}}</td>
+                        <td>{{request.transcript.student.lastName}}</td>
+                        <td>{{request.dateCreated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</td>
+                        <td>{{request.dateUpdated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</td>
+                    </tr>
+                </table>
+            </div>
+            <button type="button" class="btn btn-default" ng-click="create($event)">New Request</button>
+        </div>
+    </div>
+
+

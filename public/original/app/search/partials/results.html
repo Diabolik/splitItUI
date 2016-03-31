@@ -1,0 +1,113 @@
+<!--Copyright 2015 Ellucian Company L.P. and its affiliates.-->
+<head>
+    <link href="./css/search.css" rel="stylesheet" />
+</head>
+<div id="resultsPage" ng-controller="SearchController as sc">
+    <nav>
+        <ul class="breadcrumb">
+            <li><a id="resultsPage.nav.home" href="../home/#/"><span ng-bind="'common.breadcumb.home' | i18n"/></a></li>
+            <li><span ng-bind="'common.breadcumb.search' | i18n"/></li>
+            <li><span>{{sc.queryString}}</span></li>
+        </ul>
+    </nav>
+    <!-- Agreement Results Table -->
+    <div class="panel-heading">
+        <h1 class="result-table-title" ng-bind="'searchResults.agreements.header' | i18n"/>
+    </div>
+    <table id="agreementSearchResults" class="data-table" tabindex="0">
+        <thead>
+        <tr>
+            <th scope="col">
+                <span ng-bind="'searchResults.agreements.action.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.agreements.institution.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.agreements.name.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.agreements.description.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.agreements.program.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.agreements.catalogYear.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.agreements.receivedDate.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.agreements.activityDate.tableHeader' | i18n"></span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr id="agremementResult-{{$index}}" ng-repeat="agreementResult in sc.agreementResults">
+            <td><a id="agr-{{agreementResult.id}}" href="/app/agreementListing/#/agreements/{{agreementResult.id}}" ng-bind="'searchResults.action.view' | i18n"></a></td>
+            <td>{{agreementResult.source.sourceInstitution.name}}</td>
+            <td>{{agreementResult.source.name}}</td>
+            <td>{{agreementResult.source.description}}</td>
+            <td>{{agreementResult.source.program}}</td>
+            <td>{{agreementResult.source.catalogYear}}</td>
+            <td>{{agreementResult.source.dateCreated | date: "yyyy-MM-dd hh:mm a"}}</td>
+            <td>{{agreementResult.source.dateUpdated | date: "yyyy-MM-dd hh:mm a"}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <label ng-if="sc.agreementResults.length <= 0"><span ng-bind="'searchResults.agreements.notFound' | i18n"></span></label>
+    <div class="section-header" id="agreementSearchResults.spacer.temporary"></div>
+    <!-- Request Results Table -->
+    <div class="panel-heading">
+        <h1 class="result-table-title" ng-bind="'searchResults.requests.header' | i18n"/>
+    </div>
+    <table id="requestSearchResults" class="data-table" tabindex="0">
+        <thead>
+        <tr>
+            <th scope="col">
+                <span ng-bind="'searchResults.requests.action.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.requests.studentId.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.requests.student.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.requests.institution.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.requests.status.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.requests.lastUpdatedBy.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.requests.cycleTime.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.requests.receivedDate.tableHeader' | i18n"></span>
+            </th>
+            <th scope="col">
+                <span ng-bind="'searchResults.requests.activityDate.tableHeader' | i18n"></span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr id="requestResult-{{$index}}" ng-repeat="requestResult in sc.requestResults">
+            <td><a id="req-{{requestResult.id}}" href="/app/requestDetails/#/requests/{{requestResult.id}}" ng-bind="'searchResults.action.view' | i18n"></a></td>
+            <td>{{requestResult.source.studentCode}}</td>
+            <td>{{requestResult.source.studentName}}</td>
+            <td>{{requestResult.source.sourceInstitution.name}}</td>
+            <td>{{requestResult.source.fixedStatusCode}}</td>
+            <td>{{requestResult.source.updatedBy}}</td>
+            <td>{{requestResult.source.fixedCycleTime}}</td>
+            <td>{{requestResult.source.dateCreated | date: "yyyy-MM-dd hh:mm a"}}</td>
+            <td>{{requestResult.source.dateUpdated | date: "yyyy-MM-dd hh:mm a"}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <label ng-if="sc.requestResults.length <= 0"><span ng-bind="'searchResults.requests.notFound' | i18n"></span></label>
+    <div class="section-header" id="requestSearchResults.spacer.temporary"></div>
+</div>

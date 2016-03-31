@@ -1,0 +1,58 @@
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
+    <h3>Local Course Details</h3>
+    <div growl id="notificationMessage"></div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Subject : </span>
+                <span id="localCourseSubject">{{localCourse.courseSubject}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Number: </span>
+                <span id="localCourseNumber">{{localCourse.courseNumber}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Level: </span>
+                <span id="localCourseLevel">{{localCourse.courseLevel.description}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Section: </span>
+                <span id="localCourseSection">{{localCourse.section}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Credits: </span>
+                <span id="localCourseCredits">{{localCourse.credits}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-12">
+                <span >Create Date: </span>
+                <span id="localCourseCreateDate">{{localCourse.dateCreated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-12">
+                <span >Last Update Date: </span>
+                <span id="localCourseUpdateDate">{{localCourse.dateUpdated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</span><br>
+            </div>
+        </div>
+        <div class="row" ng-controller="modalsController">
+            <div class="col-sm-4 col-md-12">
+                <br/><button class="btn btn-danger" ng-click="launch('confirmDeleteLocalCourse')">Delete Local Course</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+

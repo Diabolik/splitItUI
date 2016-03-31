@@ -1,0 +1,118 @@
+<!--Copyright 2015 Ellucian Company L.P. and its affiliates.-->
+
+<div id="homePage">
+    <div class="row">
+        <div class="col-md-2"/>
+        <div class="col-md-8">
+            <h1 ng-bind="'home.home.page.title' | i18n"/>
+        </div>
+        <div class="col-md-2"/>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"/>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2 class="panel-title" ng-bind="'home.home.statistics.header' | i18n"/>
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span>{{'home.home.statistics.transcriptsImportedLabel' | i18n}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                        <label id="Transcripts Imported percentage">60%</label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <span>{{'home.home.statistics.articulationCompletedLabel' | i18n}}</span>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        <label id="Articulations Completed percentage">40%</label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2 class="panel-title" ng-bind="'home.home.metrics.header' | i18n"/>
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item"><span>{{'home.home.metrics.transcriptsImportedLabel' | i18n}} 1002</span></li>
+                            <li class="list-group-item"><span>{{'home.home.metrics.transcriptsImportedThisMonthLabel' | i18n}} 230</span></li>
+                            <li class="list-group-item"><span>{{'home.home.metrics.averageTranscriptsImportedMonthly' | i18n}} 193</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"/>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"/>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title" ng-bind="'home.home.tasks.header' | i18n"/>
+                </div>
+                <div class="list-group">
+                    <li class="list-group-item"><a href="/app/requestListing/index.html"><span ng-bind="'home.home.tasks.viewRequestsLink' | i18n"/></a></li>
+                    <li class="list-group-item"><a href="/app/agreementListing/index.html"><span ng-bind="'home.home.tasks.viewInstitutionAgreementsLink' | i18n"/></a></li>
+                    <li class="list-group-item"><a href="#"><span ng-bind="'home.home.tasks.viewInstitutionSettings' | i18n"/></a></li>
+                </div>
+            </div>
+       </div>
+        <div class="col-md-2"/>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"/>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h2 class="panel-title" ng-bind="'home.home.recentRequests.header' | i18n"/>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="#"><span ng-bind="'home.home.recentRequests.viewAllRequestsLink' | i18n"/></a>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group">
+                    <div id="recentRequestsRow" ng-repeat="student in hc.students">
+                        <li class="list-group-item"><a href="#">{{student.name}}</a> <span ng-bind="'home.home.recentRequests.label' | i18n"/> {{student.institution}} {{student.transcriptDate}}</li>
+                    </div>
+                </ul>
+
+            </div>
+        </div>
+        <div class="col-md-2"/>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"/>
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title" ng-bind="'home.home.activityStream.header' | i18n"/>
+                </div>
+                <div class="list-group">
+                    <div id="activityStreamRow" ng-repeat="activity in hc.activities">
+                        <li class="list-group-item"><a href="#">{{activity.name}}</a> {{activity.message}}</li>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"/>
+
+    </div>
+
+</div>

@@ -1,0 +1,42 @@
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" >
+    <h3>New Transcript</h3>
+    <div growl id="notificationMessage"></div>
+    <div class="panel-body">
+        <form name="trForm" class="form col-md-4">
+            <div class="form-group fieldcontain  ">
+                <label class="control-label" id=""  for="sourceInstitutionId">
+                    Source Institution
+                    <span class="required-indicator">*</span>
+                </label>
+                <select id="sourceInstitutionId" ng-model="transcript.sourceInstitutionId"
+                        data-ng-options="institution.id as institution.name for institution in institutions" required>
+                    <option value="">Select institution...</option>
+                </select>
+            </div>
+            <div class="form-group fieldcontain  ">
+                <label class="control-label" for="firstName">
+                    First Name
+                </label>
+                <input type="text" class="form-control" id="firstName"  ng-model="transcript.studentEntity.firstName" placeholder="Enter First Name">
+            </div>
+            <div class="form-group fieldcontain  ">
+                <label class="control-label" for="lastName">
+                    Last Name
+                </label>
+                <input type="text" class="form-control" id="lastName"  ng-model="transcript.studentEntity.lastName" placeholder="Enter Last Name">
+            </div>
+            <div class="form-group fieldcontain  ">
+                <label class="control-label" for="studentId">
+                    Student ID
+                    <span class="required-indicator">*</span>
+                </label>
+                <input type="text" class="form-control" id="studentId"  ng-model="transcript.studentEntity.code" placeholder="Enter the Student ID" required="true">
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-md-12" >
+                    <button class="btn btn-default" ng-click="save(transcript)" ng-disabled="!trForm.$valid">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

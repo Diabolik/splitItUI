@@ -1,0 +1,43 @@
+<div>
+
+    <div class="modal-header">
+        <h3 class="modal-title">New Course Level Map</h3>
+    </div>
+    <div class="modal-body">
+        <form  name="courseLevelMapForm">
+
+            <div class="form-group fieldcontain">
+                <label for="sourceInstitutionId">Source Institution <span
+                        class="required-indicator">*</span></label>
+            <span>{{courseLevelMap.sourceInstitutionId}}</span>
+            </div>
+
+            <div class="form-group fieldcontain">
+                <label for="code">Transcript Course Level<span
+                        class="required-indicator">*</span> </label>
+                <input type="text" class="form-control" id="code" placeholder="Enter Code"
+                       ng-model="courseLevelMap.code" required>
+            </div>
+
+            <div class="form-group fieldcontain">
+                <label for="courseLevel">Course level <span
+                        class="required-indicator">*</span> </label>
+                <select id="courseLevel" ng-model="courseLevelMap.localLevelId"
+                        data-ng-options="courselevel.id as courselevel.description for courselevel in courseLevelList"
+                        ng-change="translateCourseLevel(course)">
+                </select>
+
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-default" ng-click="save()"
+                ng-disabled="!courseLevelMapForm.$valid">Save
+        </button>
+        <button class="btn btn-default" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,80 @@
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" data-ng-init="initGetAgreement()">
+    <h3>Agreement Details</h3>
+    <div growl id="notificationMessage"></div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span>Institution: </span>
+                <span id="agreementInstitutionName{{$index}}">{{agreement.sourceInstitution.name}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span>Name: </span>
+                <span id="agreementName{{$index}}">{{agreement.name}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Description: </span>
+                <span id="agreementDescription">{{agreement.description}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Program: </span>
+                <span id="agreementProgram">{{agreement.program}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-5">
+                <span >Catalog Year: </span>
+                <span id="agreementCatalogYear">{{agreement.catalogYear}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-12">
+                <span >Create Date: </span>
+                <span id="agreementCreateDate">{{agreement.dateCreated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</span><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-md-12">
+                <span >Last Update Date: </span>
+                <span id="agreementUpdateDate">{{agreement.dateUpdated | date:'yyyy-MM-dd HH:mm:ss' : 'GMT'}}</span><br>
+            </div>
+        </div>
+        <div class="row" ng-controller="modalsController">
+            <div class="col-sm-4 col-md-12">
+                <br/><button class="btn btn-danger" ng-click="launch('confirmDeleteAgreement')">Delete Agreement</button>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="panel panel-default col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" data-ng-init="initGetEquivalencies()">
+<div class="panel-heading"><h3>Equivalencies</h3>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <th>Equivalency Id</th>
+            <th>Session</th>
+            <th>Default Begin Date</th>
+            <th>Default End Date</th>
+            <tr ng-repeat="equivalency in foundEquivalencies" ng-class-odd="'stripedSection'">
+                <td><a href='#/equivalencies/{{equivalency.id}}'>{{equivalency.id}}</a></td>
+                <td>{{equivalency.session}}</td>
+                <td>{{equivalency.beginDate | date:'yyyy-MM-dd' : 'GMT'}}</td>
+                <td>{{equivalency.endDate | date:'yyyy-MM-dd' : 'GMT'}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-4 col-md-12" ng-controller="equivalencySaveController">
+        <br/><a href="#/equivalency/save" role="button" class="btn btn-default btn-large">New Equivalency</a>
+    </div>
+</div>
+
+</div>

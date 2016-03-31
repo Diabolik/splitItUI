@@ -1,0 +1,177 @@
+<!--Copyright 2015 Ellucian Company L.P. and its affiliates.-->
+<head>
+    <link href="./css/requestDetails.css" rel="stylesheet" />
+</head>
+<nav>
+    <ul class="breadcrumb">
+        <li><a id="requestDetails.nav.home" href="../home/#/"><span ng-bind="'common.breadcumb.home' | i18n"/></a></li>
+        <li><a id="requestDetails.nav.requestListing" href="../requestListing/#/"><span ng-bind="'common.breadcumb.requestListing' | i18n"/></a></li>
+        <li ng-bind="'requestDetails.breadcrumbTitle' | i18n"></li>
+        <li ng-bind="'actionNeededDetails.breadcrumbTitle' | i18n"></li>
+    </ul>
+</nav>
+<div id="actionNeededDetails">
+    <div class="col-sm-4 col-md-12">
+        <!-- Collapsible Header -->
+        <div class="collapsable-group" id="actionNeededDetails-collapse-menu-group" role="tablist" aria-multiselectable="true">
+            <div class="collapsable-group collapsable-group-default">
+                <div class="collapsable-group-heading" role="tab" id="actionNeededDetailsMenuGroupHeading">
+                    <h5 class="collapsable-group-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#actionNeededDetailsCollapseMenuGroup"
+                           aria-expanded="true" aria-controls="requestDetailsCollapseGroup" class="">
+                            <div><span ng-bind="'requestDetails.statusBar.student' | i18n"> </span><span class="unstyled-text"> {{and.student}}</span></div>
+                            <div><span ng-bind="'requestDetails.statusBar.institution' | i18n"> </span><span class="unstyled-text"> {{and.institution}}</span></div>
+                            <div><span ng-bind="'requestDetails.statusBar.request' | i18n"> </span> <span class="requestUUID unstyled-text"> {{and.requestId}}</span></div>
+                             <span class="BannerIcon icon-right icon-arrow" aria-hidden="true">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#869fb1" d="M21.2 4.5l2.8 2.667-12 11.429-12-11.429 2.8-2.667 9.2 8.762z"></path>
+                                </svg>
+                             </span>
+                        </a>
+                    </h5>
+                </div>
+                <!-- Collapsible Body -->
+                <div id="actionNeededDetailsCollapseMenuGroup" class="collapsable-group-collapse collapse in" role="tab" aria-labelledby="actionNeededDetailsMenuGroupHeading" aria-expanded="true">
+                    <div class="collapsable-group-menu-body">
+                        <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
+                        <span ng-bind="'requestDetails.statusBar.nextSteps' | i18n"/>
+                        <a id="cancelAgreementBtn" href="/app/requestDetails/#/requests/{{and.requestId}}" role="button" class="btn btn-default btn-sm">
+                            <span ng-bind="'requestDetails.statusBar.backToRequest' | i18n"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Collapsible Transfer Course Info -->
+            <div class="collapsable-group collapsable-group-default">
+                <div class="collapsable-group-heading" role="tab" id="actionNeededDetailsCourseGroupHeading">
+                    <h5 class="collapsable-group-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#actionNeededDetailsCollapseCourseGroup"
+                           aria-expanded="true" aria-controls="requestDetailsCollapseGroup" class="">
+                            <div><span ng-bind="'requestDetails.statusBar.transferCourseActionNeededDetails' | i18n"/></div>
+                             <span class="BannerIcon icon-right icon-arrow" aria-hidden="true">
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                                    <path fill="#869fb1" d="M21.2 4.5l2.8 2.667-12 11.429-12-11.429 2.8-2.667 9.2 8.762z"></path>
+                                </svg>
+                             </span>
+                        </a>
+                    </h5>
+                </div>
+                <!-- Collapsible Body -->
+                <div id="actionNeededDetailsCollapseCourseGroup" class="collapsable-group-collapse collapse in" role="tab" aria-labelledby="actionNeededDetailsCollapseCourseGroup" aria-expanded="true">
+                    <div class="collapsable-group-course-body">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <strong><span ng-bind="'actionNeededDetails.course.header' | i18n"/> </span></strong>
+                                <span ng-repeat="course in and.actionDetailsNeededItem.studentCourseList">{{course.title}}</span>
+                            </div>
+                            <div class="col-lg-4">
+                                <strong><span ng-bind="'actionNeededDetails.level.header' | i18n"/> </span></strong>
+                                <span ng-repeat="course in and.actionDetailsNeededItem.studentCourseList">{{course.courseLevel}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <strong><span ng-bind="'actionNeededDetails.subject.header' | i18n"> </span></strong>
+                                <span ng-repeat="course in and.actionDetailsNeededItem.studentCourseList">{{course.courseSubject}}</span>
+                            </div>
+                            <div class="col-lg-4">
+                                <strong><span ng-bind="'actionNeededDetails.session.header' | i18n"> </span></strong>
+                                <span ng-repeat="course in and.actionDetailsNeededItem.studentCourseList">{{course.session}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <strong><span ng-bind="'actionNeededDetails.number.header' | i18n"> </span></strong>
+                                <span ng-repeat="course in and.actionDetailsNeededItem.studentCourseList">{{course.courseNumber}}</span>
+                            </div>
+                            <div class="col-lg-4">
+                                <strong><span ng-bind="'actionNeededDetails.date.header' | i18n"> </span></strong>
+                                <span ng-repeat="course in and.actionDetailsNeededItem.studentCourseList">{{course.dateUpdated | date:'yyyy-MM-dd' : 'GMT'}}</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <strong><span ng-bind="'actionNeededDetails.grade.header' | i18n"> </span></strong>
+                                <span ng-repeat="course in and.actionDetailsNeededItem.studentCourseList">{{course.transferGrade}}</span>
+                            </div>
+                            <div class="col-lg-4">
+                                <strong><span ng-bind="'actionNeededDetails.credits.header' | i18n"> </span></strong>
+                                <span ng-repeat="course in and.actionDetailsNeededItem.studentCourseList">{{course.creditsEarned}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Collapsible Transfer Course Recommendations -->
+        <div class="collapsable-group collapsable-group-default">
+            <div class="collapsable-group-heading" role="tab" id="actionNeededDetailsGroupHeading">
+                <h5 class="collapsable-group-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#actionNeededDetailsCollapseGroup"
+                       aria-expanded="true" aria-controls="actionNeededDetailsCollapseGroup" class="">
+                        <div><span ng-bind="'requestDetails.statusBar.recommendationsActionNeededDetails' | i18n"></span></div>
+                        <span class="BannerIcon icon-right icon-arrow" aria-hidden="true">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                                <path fill="#869fb1" d="M21.2 4.5l2.8 2.667-12 11.429-12-11.429 2.8-2.667 9.2 8.762z"></path>
+                            </svg>
+                        </span>
+                    </a>
+                </h5>
+            </div>
+            <!-- Collapsible Body -->
+            <div id="actionNeededDetailsCollapseGroup" class="collapsable-group-collapse collapse in" role="tab" aria-labelledby="actionNeededDetailsGroupHeading" aria-expanded="true">
+                <div class="collapsable-group-menu-body">
+                    <table id="dataTable" class="data-table" tabindex="0">
+                        <thead>
+                        <tr>
+                            <th id="actionNeededDetails.tableHeader.action" scope="col" ng-bind="'actionNeededDetails.action.tableHeader' | i18n"></th>
+                            <th id="actionNeededDetails.tableHeader.weight" scope="col" ng-bind="'actionNeededDetails.weight.tableHeader' | i18n"></th>
+                            <th id="actionNeededDetails.tableHeader.courseSubject" scope="col"  ng-bind="'actionNeededDetails.courseSubject.tableHeader' | i18n"></th>
+                            <th id="actionNeededDetails.tableHeader.courseNumber" scope="col"  ng-bind="'actionNeededDetails.courseNumber.tableHeader' | i18n"></th>
+                            <th id="actionNeededDetails.tableHeader.level" scope="col" ng-bind="'actionNeededDetails.level.tableHeader' | i18n"></th>
+                            <th id="actionNeededDetails.tableHeader.localgrade" scope="col" ng-bind="'actionNeededDetails.localgrade.tableHeader' | i18n"></th>
+                            <th id="actionNeededDetails.tableHeader.credits" scope="col" ng-bind="'actionNeededDetails.credits.tableHeader' | i18n"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr id="actionNeededDetails-{{$index}}" ng-repeat="item in and.actionDetailsNeededItem.suggestionList">
+                            <td id="actionNeededDetails.table.action[{{$index}}]" class="ng-scope ng-binding">
+                            </td>
+                            <td id="actionNeededDetails.table.weight[{{$index}}]" class="ng-scope ng-binding">
+                                {{item.percentage}}<span ng-bind="'articulationResults.actionNeeded.suggestionPercentage' | i18n" />
+                            </td>
+                            <td id="actionNeededDetails.table.courseSubject[{{$index}}]" class="ng-scope ng-binding">
+                                <ul class="list-unstyled" ng-repeat="course in item.equivalency.localCourseList">
+                                    <li>{{course.courseSubject}}</li>
+                                </ul>
+                            </td>
+                            <td id="actionNeededDetails.table.courseNumber[{{$index}}]" class="ng-scope ng-binding">
+                                <ul class="list-unstyled" ng-repeat="course in item.equivalency.localCourseList">
+                                    <li>{{course.courseNumber}}</li>
+                                </ul>
+                            </td>
+                            <td id="actionNeededDetails.table.level[{{$index}}]" class="ng-scope ng-binding">
+                                <ul class="list-unstyled" ng-repeat="course in item.equivalency.localCourseList">
+                                    <li>{{course.courseLevel.description}}</li>
+                                </ul>
+                            </td>
+                            <td id="ationNeededDetails.table.localgrade[{{$index}}]" class="ng-scope ng-binding">
+                                <ul class="list-unstyled" ng-repeat="course in item.equivalency.localCourseList">
+                                    <li>{{course.grade}}</li>
+                                </ul>
+                            </td>
+                            <td id="actionNeededDetails.table.credits[{{$index}}]" class="ng-scope ng-binding">
+                                <ul class="list-unstyled" ng-repeat="course in item.equivalency.localCourseList">
+                                    <li>{{course.credits}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</div>
